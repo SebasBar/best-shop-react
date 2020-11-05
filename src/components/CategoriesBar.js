@@ -14,18 +14,13 @@ handleSubmit = (event) => {
 
 }
 handleChange = (event) => {
-    this.setState({ categoryInput:event });
+    this.setState({ categoryInput: event });
 }
  
   render(){
     return(
-      <form onSubmit={()=>this.handleSubmit(this.id)}>
     <div className="categories-bar">
-    <input
-        type="submit"
-        id="technology"
-        value = "Technology"
-     />
+    <button className="button" value="technology" onClick={(event)=>this.props.onSearch(event.target.value)}>Technology</button>
         {/* <button
       id="fashion"
         onClick = {() => searchButton('fashion')}
@@ -55,7 +50,6 @@ handleChange = (event) => {
         onClick = {() => searchButton('home&garden')}
       >Home and Garden</button> */}
     </div>
-    </form>
   );
 }
 }

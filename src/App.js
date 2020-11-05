@@ -1,9 +1,11 @@
 import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 // import "./style.css";
-  import Searchbar from "./components/SearchBar";
-  import {securityAppName} from './config'
-  import CreateCategoriesBar from "./components/CategoriesBar"
+import Searchbar from "./components/SearchBar";
+import {securityAppName} from './config'
+import CategoriesBar from "./components/CategoriesBar"
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import DisplayProduct2 from './components/DisplayProducts2.js'; 
 
 export default class App extends React.Component {
   constructor(props) {
@@ -54,12 +56,15 @@ export default class App extends React.Component {
     // console.log(this.state.response)
     return (
         <>  
-
+      <Router>
         <Searchbar onSearch={(query) => this.handleSearch(query)} />
-        {/* <CreateCategoriesBar  */}
-        {!this.state.loading ? 
-        <DisplayProduct product={this.state.searchResult} /> : <h1>Loading...</h1> }
- 
+        
+        <CategoriesBar onSearch={(query) => this.handleSearch(query)} /> 
+        <Route path="/category/:name" component={DisplayProduct2} exact />
+        <DisplayProduct />
+        {/* {!this.state.loading ? 
+        <DisplayProduct product={this.state.searchResult} /> : <h1>Loading...</h1> } */}
+ </Router>
       </>
     );
   }
