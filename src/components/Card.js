@@ -3,14 +3,27 @@ function Card(props) {
   return (
     <div className="main-container">
       <div className="container">
+        <h2 className="product-name">
+          {" "}
+          <strong>{props.title}</strong>
+        </h2>
         <img src={props.image} />
-        <p className="product-name"> {props.title}</p>
-        <p> Price: {props.price}$ </p>
-        {/* <p>Location available: {props.location}</p> 
-         <p>Product# {props.product}</p> 
-         <p>Country: {props.country}</p> 
-         <p><a href={props.link}>Link to ebay</a></p> */}
-        {/* <button onClick={() => createCart()} > add to cart</button> */}
+        <p>
+          {" "}
+          <strong>Price:</strong> {props.price}${" "}
+        </p>
+        <p>
+          <strong>Location available: </strong> {props.location}
+        </p>
+        <p>
+          <strong>Country:</strong> {props.country}
+        </p>
+        <p>
+          <strong>Shipping Type </strong> {props.shipping}
+        </p>
+        <p>
+          <a href={props.link}>Link to ebay</a>
+        </p>
       </div>
     </div>
   );

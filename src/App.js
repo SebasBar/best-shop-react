@@ -25,6 +25,10 @@ export default class App extends React.Component {
     this.handleFetch(query);
   };
 
+  handleNumProduct = (event) => {
+    this.setState({ numItemDisplay: event.target.value });
+  };
+
   handleFetch = (query) => {
     const queryParams =
       "&OPERATION-NAME=findItemsByKeywords" +
@@ -61,15 +65,32 @@ export default class App extends React.Component {
             loading: false,
             searchResult:
               data.findItemsByKeywordsResponse[0].searchResult[0].item,
+            error: false,
           });
         }
       });
   };
 
   render() {
+    const maxItemsPerPage = this.state.numItemDisplay;
+    let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
+    itemPerPage.shift();
+
     console.log("app", this.state.searchResult);
     return (
       <>
+        <p>
+          <label>Products per page </label>
+          <select
+            id="myList"
+            value={this.state.numItemDisplay}
+            onChange={this.handleNumProduct}
+          >
+            {itemPerPage.map((item) => (
+              <option value={item}>{item}</option>
+            ))}
+          </select>
+        </p>
         <Router>
           <Searchbar
             onSearch={(query) => this.handleSearch(query)}
