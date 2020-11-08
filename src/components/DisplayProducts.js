@@ -1,36 +1,33 @@
-import React from 'react';
+import React from "react";
+import { securityAppName } from "../config";
+import Card from "./Card";
 
-
-function DisplayProduct(props) {
-    const productElements = [];
-    console.log("props", props)
-    props.product.forEach((item, index) => {
-      const itemName = (
-        <div className="main-container">
-        <div className="container" key={index}>
-        <img src={item.galleryURL} />
-         <p className="product-name"> {item.name}</p> 
-         <p > Price: {item.sellingStatus[0].currentPrice[0].__value__}$ </p> 
-         <p>Location available: {item.location}</p> 
-         <p>Product# {item.itemId[0]}</p> 
-         <p>Offer: {item.subtitle}</p> 
-         <button onClick={() => createCart()} > add to cart</button>
-        <p></p>
-         </div>     
-         </div>
-      );
-      productElements.push(itemName);
-    });
-
-    function createCart() {
-    console.log(" this is cart" )
-    }
-  
+class DisplayProduct extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      response: null,
+      products: null,
+    };
+  }
+  render() {
+    console.log("state", this.props.product);
     return (
-      <div className="main">
-        {productElements}
-      </div>
+      <>
+        {this.props.product.map((product) => (
+          <Card
+            price={product.sellingStatus[0].currentPrice[0].__value__}
+            image={product.galleryURL[0]}
+            title={product.title}
+            location={product.location[0]}
+            shipping={product.shippingInfo[0].shippingType[0]}
+            link={product.viewItemURL[0]}
+            country={product.country}
+          />
+        ))}
+      </>
     );
   }
+}
 
-  export default DisplayProduct;
+export default DisplayProduct;

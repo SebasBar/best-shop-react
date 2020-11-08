@@ -1,65 +1,45 @@
 import React from "react";
+const categories = [
+  "technology",
+  "fashion",
+  "beauty",
+  "motors",
+  "collectibles",
+  "industrial",
+  "sports",
+  "home&garden",
+];
 
-
-class CreateCategoriesBar extends React.Component{
-  constructor(props){
+class CreateCategoriesBar extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-        categoryInput: ""
-    }
-}
-handleSubmit = (event) => {
+      categoryInput: "",
+    };
+  }
+  handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSearch(this.state.categoryInput)
+    this.props.onSearch(this.state.categoryInput);
+  };
+  handleChange = (event) => {
+    this.setState({ categoryInput: event });
+  };
 
+  render() {
+    return (
+      <div className="categories-bar">
+        {categories.map((category) => (
+          <button
+            className="button"
+            value={category}
+            onclick={(event) => this.props.onSearch(event.target.value)}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    );
+  }
 }
-handleChange = (event) => {
-    this.setState({ categoryInput:event });
-}
- 
-  render(){
-    return(
-      <form onSubmit={()=>this.handleSubmit(this.id)}>
-    <div className="categories-bar">
-    <input
-        type="submit"
-        id="technology"
-        value = "Technology"
-     />
-        {/* <button
-      id="fashion"
-        onClick = {() => searchButton('fashion')}
-      >Fashion</button>
-        <button
-      id="health-beauty"
-        onClick = {() => searchButton('health&beauty')}
-      >Health and Beauty</button>
-        <button
-      id="motors"
-        onClick = {() => searchButton('motors')}
-      >Motors</button>
-        <button
-      id="collectibles"
-        onClick = {() => searchButton('collectibles')}
-      >Collectibles</button>
-        <button
-      id="industrial"
-        onClick = {() => searchButton('industrial')}
-      >Industrial</button>
-        <button
-      id="sports"
-        onClick = {() => searchButton('sports')}
-      >Sports</button>
-        <button
-      id="homeandgarden"
-        onClick = {() => searchButton('home&garden')}
-      >Home and Garden</button> */}
-    </div>
-    </form>
-  );
-}
-}
-
-
 
 export default CreateCategoriesBar;
