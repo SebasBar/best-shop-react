@@ -9,7 +9,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 20,
+      numItemDisplay: 10,
       searchResult: null,
       error: false,
       loading: true,
@@ -17,7 +17,8 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.handleFetch();
+    console.log("component mount");
+    //this.handleFetch();
   }
 
   handleSearch = (query) => {
@@ -72,13 +73,16 @@ export default class App extends React.Component {
   };
 
   render() {
-    const maxItemsPerPage = this.state.numItemDisplay;
+    const maxItemsPerPage = 30;
     let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
     itemPerPage.shift();
 
     console.log("app", this.state.searchResult);
     return (
       <>
+        <h1>
+          B<strong>E</strong>ST-<strong>SHOP</strong>
+        </h1>
         <p>
           <label>Products per page </label>
           <select
