@@ -32,7 +32,7 @@ class CreateCategoriesBar extends React.Component {
           <button
             className="button"
             value={category}
-            onclick={(event) => this.props.onSearch(event.target.value)}
+            onClick={(event) => this.props.onSearch(event.target.value)}
           >
             {category}
           </button>
