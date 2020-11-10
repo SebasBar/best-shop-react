@@ -1,10 +1,9 @@
 import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
-//import { securityAppName } from "./config";
+import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
@@ -88,9 +87,7 @@ export default class App extends React.Component {
     console.log("app", this.state.searchResult);
     return (
       <>
-        <h1>
-          B<strong>E</strong>ST-<strong>SHOP</strong>
-        </h1>
+        <Header />
         <p>
           <label>Products per page </label>
           <select
@@ -119,6 +116,7 @@ export default class App extends React.Component {
             <h1>Loading...</h1>
           )}
         </Router>
+        <Footer />
       </>
     );
   }
