@@ -28,8 +28,9 @@ class CreateCategoriesBar extends React.Component {
   render() {
     return (
       <div className="categories-bar">
-        {categories.map((category) => (
+        {categories.map((category, index) => (
           <button
+            key={index}
             className="button"
             value={category}
             onClick={(event) => this.props.onSearch(event.target.value)}
