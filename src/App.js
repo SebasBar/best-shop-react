@@ -76,6 +76,7 @@ export default class App extends React.Component {
     const maxItemsPerPage = 30;
     let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
     itemPerPage.shift();
+    // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
 
     console.log("app", this.state.searchResult);
     return (
@@ -90,8 +91,10 @@ export default class App extends React.Component {
             value={this.state.numItemDisplay}
             onChange={this.handleNumProduct}
           >
-            {itemPerPage.map((item) => (
-              <option value={item}>{item}</option>
+            {itemPerPage.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
             ))}
           </select>
         </p>
