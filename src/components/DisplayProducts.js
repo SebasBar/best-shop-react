@@ -15,6 +15,7 @@ class DisplayProduct extends React.Component {
       <>
         {this.props.product.map((product) => (
           <Card
+          
             price={product.sellingStatus[0].currentPrice[0].__value__}
             image={product.galleryURL[0]}
             title={product.title}
@@ -22,6 +23,7 @@ class DisplayProduct extends React.Component {
             shipping={product.shippingInfo[0].shippingType[0]}
             link={product.viewItemURL[0]}
             country={product.country}
+            id={product.itemId[0]}
           />
         ))}
       </>

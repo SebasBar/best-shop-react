@@ -4,6 +4,7 @@ import Searchbar from "./components/SearchBar";
 import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ProductDetails from "./components/ProductDetails";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -80,34 +81,36 @@ export default class App extends React.Component {
     console.log("app", this.state.searchResult);
     return (
       <>
-        <h1>
-          B<strong>E</strong>ST-<strong>SHOP</strong>
-        </h1>
-        <p>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item) => (
-              <option value={item}>{item}</option>
-            ))}
-          </select>
-        </p>
         <Router>
-          <Searchbar
-            onSearch={(query) => this.handleSearch(query)}
-            error={this.state.error}
-          />
-          <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
+          <Route exact path="/">
+            <h1>
+              B<strong>E</strong>ST-<strong>SHOP</strong>
+            </h1>
+            <label>Products per page </label>
+            <select
+              id="myList"
+              value={this.state.numItemDisplay}
+              onChange={this.handleNumProduct}
+            >
+              {itemPerPage.map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </select>
+            <Searchbar
+              onSearch={(query) => this.handleSearch(query)}
+              error={this.state.error}
+            />
+            <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
+            {!this.state.loading ? (
+              <DisplayProduct product={this.state.searchResult} />
+            ) : (
+              <h1>Loading...</h1>
+            )}
+          </Route>
 
-          <Route path="/category/:name" component={DisplayProduct} exact />
-          {!this.state.loading ? (
-            <DisplayProduct product={this.state.searchResult} />
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          <Route exact path="/category/:name" component={DisplayProduct} />
+
+          <Route exact path="/product/:id" component={ProductDetails} />
         </Router>
       </>
     );

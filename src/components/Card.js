@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 function Card(props) {
   return (
     <div className="main-container">
@@ -23,6 +25,7 @@ function Card(props) {
         </p>
         <p>
           <a href={props.link}>Link to ebay</a>
+          <Link to={`/product/${props.id}`}>More product details</Link>
         </p>
       </div>
     </div>
