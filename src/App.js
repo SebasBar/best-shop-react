@@ -88,8 +88,9 @@ export default class App extends React.Component {
     console.log("app", this.state.searchResult);
     return (
       <>
-        <Header />
-
+        <h1>
+          B<strong>E</strong>ST-<strong>SHOP</strong>
+        </h1>
         <p>
           <label>Products per page </label>
           <select
@@ -104,7 +105,6 @@ export default class App extends React.Component {
             ))}
           </select>
         </p>
-
         <Router>
           <Searchbar
             onSearch={(query) => this.handleSearch(query)}
@@ -113,14 +113,12 @@ export default class App extends React.Component {
           <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
 
           <Route path="/category/:name" component={DisplayProduct} exact />
-
           {!this.state.loading ? (
             <DisplayProduct product={this.state.searchResult} />
           ) : (
             <h1>Loading...</h1>
           )}
         </Router>
-        <Footer />
       </>
     );
   }
