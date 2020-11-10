@@ -48,11 +48,7 @@ export default class App extends React.Component {
 
     // // use proxy url to overcome CORS problem)
     const proxyURL = "https://cors-anywhere.herokuapp.com/";
-    const completeURL =
-      proxyURL +
-      baseURL +
-      "SECURITY-APPNAME=Sebastia-bestshop-PRD-1e6527e8b-30fb236c" +
-      queryParams;
+    const completeURL = proxyURL + baseURL + securityAppName + queryParams;
     fetch(completeURL)
       .then((resp) => resp.json())
       .then((data) => {
