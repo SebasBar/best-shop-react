@@ -1,4 +1,6 @@
 import React from "react";
+import { securityAppName } from "../config";
+
 import Card from "./Card";
 
 class DisplayProduct extends React.Component {
