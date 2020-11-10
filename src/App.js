@@ -49,7 +49,11 @@ export default class App extends React.Component {
 
     // // use proxy url to overcome CORS problem)
     const proxyURL = "https://cors-anywhere.herokuapp.com/";
-    const completeURL = proxyURL + baseURL + "SECURITY-APPNAME=Sebastia-bestshop-PRD-1e6527e8b-30fb236c" + queryParams;
+    const completeURL =
+      proxyURL +
+      baseURL +
+      "SECURITY-APPNAME=Sebastia-bestshop-PRD-1e6527e8b-30fb236c" +
+      queryParams;
     fetch(completeURL)
       .then((resp) => resp.json())
       .then((data) => {
@@ -85,9 +89,6 @@ export default class App extends React.Component {
     return (
       <>
         <Header />
-        {/* <h1>
-          B<strong>E</strong>ST-<strong>SHOP</strong>
-        </h1> */}
 
         <p>
           <label>Products per page </label>
@@ -103,6 +104,7 @@ export default class App extends React.Component {
             ))}
           </select>
         </p>
+
         <Router>
           <Searchbar
             onSearch={(query) => this.handleSearch(query)}
@@ -114,8 +116,8 @@ export default class App extends React.Component {
           {!this.state.loading ? (
             <DisplayProduct product={this.state.searchResult} />
           ) : (
-              <h1>Loading...</h1>
-            )}
+            <h1>Loading...</h1>
+          )}
         </Router>
         <Footer />
       </>
