@@ -1,15 +1,18 @@
 import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
-import { securityAppName } from "./config";
+//import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+//import "./App.css";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 10,
+      numItemDisplay: 5,
       searchResult: null,
       error: false,
       loading: true,
@@ -18,7 +21,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     console.log("component mount");
-    //this.handleFetch();
+    this.handleFetch();
   }
 
   handleSearch = (query) => {
@@ -46,7 +49,7 @@ export default class App extends React.Component {
 
     // // use proxy url to overcome CORS problem)
     const proxyURL = "https://cors-anywhere.herokuapp.com/";
-    const completeURL = proxyURL + baseURL + securityAppName + queryParams;
+    const completeURL = proxyURL + baseURL + "SECURITY-APPNAME=Sebastia-bestshop-PRD-1e6527e8b-30fb236c" + queryParams;
     fetch(completeURL)
       .then((resp) => resp.json())
       .then((data) => {
@@ -80,9 +83,11 @@ export default class App extends React.Component {
     console.log("app", this.state.searchResult);
     return (
       <>
-        <h1>
+        <Header />
+        {/* <h1>
           B<strong>E</strong>ST-<strong>SHOP</strong>
-        </h1>
+        </h1> */}
+
         <p>
           <label>Products per page </label>
           <select
@@ -106,9 +111,10 @@ export default class App extends React.Component {
           {!this.state.loading ? (
             <DisplayProduct product={this.state.searchResult} />
           ) : (
-            <h1>Loading...</h1>
-          )}
+              <h1>Loading...</h1>
+            )}
         </Router>
+        <Footer />
       </>
     );
   }
