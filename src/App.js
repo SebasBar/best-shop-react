@@ -20,7 +20,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     console.log("component mount");
-    this.handleFetch();
+    //this.handleFetch();
   }
 
   handleSearch = (query) => {
