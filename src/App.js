@@ -113,6 +113,7 @@ export default class App extends React.Component {
           <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
 
           <Route path="/category/:name" component={DisplayProduct} exact />
+
           {!this.state.loading ? (
             <DisplayProduct product={this.state.searchResult} />
           ) : (
