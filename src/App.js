@@ -88,20 +88,7 @@ export default class App extends React.Component {
     return (
       <>
         <Header />
-        <p>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </p>
+      
         <Router>
           <Route exact path="/">
             <h1>
