@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 //this component recieve as props the API array response
 
@@ -26,6 +27,7 @@ function Card(props) {
         </p>
         <p>
           <a href={props.link}>Link to ebay</a>
+          <Link to={`/product/${props.id}`}>More product details</Link>
         </p>
       </div>
     </div>

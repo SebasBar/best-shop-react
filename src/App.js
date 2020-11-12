@@ -3,7 +3,7 @@ import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
 import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import ProductDetails from "./components/ProductDetails";
 
@@ -119,14 +119,15 @@ export default class App extends React.Component {
               onSearch={(query) => this.handleSearch(query)}
               error={this.state.error}
             />
-
-            <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
-            {!this.state.loading ? (
-              <DisplayProduct product={this.state.searchResult} />
-            ) : (
-              <h1>Loading...</h1>
-            )}
           </Route>
+
+          <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
+
+          {!this.state.loading ? (
+            <DisplayProduct product={this.state.searchResult} />
+          ) : (
+            <h1>Loading...</h1>
+          )}
 
           <Route exact path="/category/:name" component={DisplayProduct} />
 
