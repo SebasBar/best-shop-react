@@ -10,6 +10,7 @@ const categories = [
   "sports",
   "home&garden",
 ];
+//category array. Adding or removing elements is easier in this way
 
 class CreateCategoriesBar extends React.Component {
   constructor(props) {
@@ -22,6 +23,9 @@ class CreateCategoriesBar extends React.Component {
     event.preventDefault();
     this.props.onSearch(this.state.categoryInput);
   };
+  //this will recieve a call back function "onSearch" with the category name as an input. It works as the search bar but
+  //with a fixed value to search for.
+
   handleChange = (event) => {
     this.setState({ categoryInput: event });
   };
@@ -39,6 +43,7 @@ class CreateCategoriesBar extends React.Component {
             {category}
           </button>
         ))}
+        {/* maps the categories to make them easy to add or change */}
       </div>
     );
   }

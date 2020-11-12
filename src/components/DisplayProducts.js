@@ -1,7 +1,7 @@
 import React from "react";
-import { securityAppName } from "../config";
-
 import Card from "./Card";
+
+//this component just display the productes, recieved as props
 
 class DisplayProduct extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class DisplayProduct extends React.Component {
     console.log("state", this.props.product);
     return (
       <>
-
         {this.props.product.map((product, index) => (
           <div className="display-products" key={index}>
             <Card
