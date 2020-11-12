@@ -15,6 +15,7 @@ class DisplayProduct extends React.Component {
     console.log("state", this.props.product);
     return (
       <>
+
         {this.props.product.map((product, index) => (
           <div className="display-products" key={index}>
             <Card
