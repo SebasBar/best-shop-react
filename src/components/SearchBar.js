@@ -1,6 +1,5 @@
 import React from "react";
 
-//this component just recieves a call back function as props "onSearch" and reads the user input
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +26,6 @@ class SearchBar extends React.Component {
         />
         <input type="submit" value="search" />
         {this.props.error && <p style={{ color: "red" }}>{this.props.error}</p>}
-        {/* in case of error, it will display the error message in red. the error is passed as props */}
       </form>
     );
   }

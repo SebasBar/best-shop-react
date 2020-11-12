@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 //this component recieve as props the API array response
 
+
 function Card(props) {
   return (
     <div className="main-container">
