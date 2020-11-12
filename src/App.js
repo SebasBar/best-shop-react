@@ -4,13 +4,18 @@ import Searchbar from "./components/SearchBar";
 import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import ProductDetails from "./components/ProductDetails";
+
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 10,
+      numItemDisplay: 5,
       searchResult: null,
       error: false,
       loading: true,
@@ -77,10 +82,26 @@ export default class App extends React.Component {
     const maxItemsPerPage = 30;
     let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
     itemPerPage.shift();
+    // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
 
     console.log("app", this.state.searchResult);
     return (
       <>
+        <Header />
+        <p>
+          <label>Products per page </label>
+          <select
+            id="myList"
+            value={this.state.numItemDisplay}
+            onChange={this.handleNumProduct}
+          >
+            {itemPerPage.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </p>
         <Router>
           <Route exact path="/">
             <h1>
@@ -112,6 +133,7 @@ export default class App extends React.Component {
 
           <Route exact path="/product/:id" component={ProductDetails} />
         </Router>
+        <Footer />
       </>
     );
   }
