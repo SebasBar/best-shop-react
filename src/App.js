@@ -10,33 +10,37 @@ import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 5,
+      numItemDisplay: 10, //this is the default number of items to display
       searchResult: null,
-      error: false,
-      loading: true,
+      error: false, //this will catch the error if the user tries to search something with an empty search bar
+      loading: true, //this will display something while the fetching is been loading
     };
   }
 
   componentDidMount() {
     console.log("component mount");
-    //this.handleFetch();
+    //this.handleFetch(); //in this case it is commented to avoid to display a "null" value when the home page is displayed
   }
 
   handleSearch = (query) => {
     this.setState({ loading: true });
     this.handleFetch(query);
   };
+  //this function is passed as a call back function to the searchBar and categories bar components and will call the handle
+  // fetch function to fetch the API data
 
   handleNumProduct = (event) => {
     this.setState({ numItemDisplay: event.target.value });
   };
+  //this function will be passed as a call back function to the drop down menu "product per page" and
+  // it will change the value ok the numItemDisplay to the selected value of items to display
 
   handleFetch = (query) => {
+    //will fetch the API data
     const queryParams =
       "&OPERATION-NAME=findItemsByKeywords" +
       "&SERVICE-VERSION=1.0.0" +
@@ -58,15 +62,18 @@ export default class App extends React.Component {
       .then((data) => {
         console.log("data", data.findItemsByKeywordsResponse[0].ack[0]);
         if (data.findItemsByKeywordsResponse[0].ack[0] === "Failure") {
+          //this is the error message you get when is a problem with the API response
           console.log(
             data.findItemsByKeywordsResponse[0].errorMessage[0].error[0]
               .message[0]
           );
+          //this will display the error message on the console
           this.setState({
             error:
               data.findItemsByKeywordsResponse[0].errorMessage[0].error[0]
                 .message[0],
           });
+          //set the error state to the value respose of the API
         } else {
           this.setState({
             loading: false,
@@ -74,6 +81,8 @@ export default class App extends React.Component {
               data.findItemsByKeywordsResponse[0].searchResult[0].item,
             error: false,
           });
+          //if there is no errror, it changes the value of loading, search result and in case of a previous error
+          // it will change the value of error to false. The error value is passed as props to the search bar component
         }
       });
   };
@@ -85,42 +94,32 @@ export default class App extends React.Component {
     // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
 
     console.log("app", this.state.searchResult);
+    console.log("error", this.state.error);
+
     return (
       <>
         <Header />
-        <p>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </p>
         <Router>
           <Route exact path="/">
-            <h1>
-              B<strong>E</strong>ST-<strong>SHOP</strong>
-            </h1>
             <label>Products per page </label>
             <select
               id="myList"
               value={this.state.numItemDisplay}
               onChange={this.handleNumProduct}
             >
-              {itemPerPage.map((item) => (
-                <option value={item}>{item}</option>
+              {itemPerPage.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
               ))}
             </select>
+            {/* drop down menu. It maps each element (numbers) dinamycally so it is easy to change*/}
+
             <Searchbar
               onSearch={(query) => this.handleSearch(query)}
               error={this.state.error}
             />
+
             <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
             {!this.state.loading ? (
               <DisplayProduct product={this.state.searchResult} />
