@@ -10,7 +10,6 @@ import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -88,33 +87,18 @@ export default class App extends React.Component {
     return (
       <>
         <Header />
-        <p>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </p>
         <Router>
           <Route exact path="/">
-            <h1>
-              B<strong>E</strong>ST-<strong>SHOP</strong>
-            </h1>
             <label>Products per page </label>
             <select
               id="myList"
               value={this.state.numItemDisplay}
               onChange={this.handleNumProduct}
             >
-              {itemPerPage.map((item) => (
-                <option value={item}>{item}</option>
+              {itemPerPage.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
               ))}
             </select>
             <Searchbar
