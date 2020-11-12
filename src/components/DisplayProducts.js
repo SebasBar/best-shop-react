@@ -26,6 +26,7 @@ class DisplayProduct extends React.Component {
               shipping={product.shippingInfo[0].shippingType[0]}
               link={product.viewItemURL[0]}
               country={product.country}
+              id = {product.itemId}
             />
           </div>
         ))}
