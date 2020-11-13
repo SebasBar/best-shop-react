@@ -17,18 +17,19 @@ function Card(props) {
           {" "}
           <strong>Price:</strong> {props.price}${" "}
         </p>
-        <p>
-          <strong>Location available: </strong> {props.location}
-        </p>
-        <p>
-          <strong>Country:</strong> {props.country}
-        </p>
-        <p>
-          <strong>Shipping Type </strong> {props.shipping}
-        </p>
+        
+       
         <p>
           <a href={props.link}>Link to ebay</a>
-          <Link to={`/product/${props.id}`}>More product details</Link>
+          <br/>
+          <Link
+            to={{
+              pathname: `/product/${props.id}`,
+              details: props,
+            }}
+          >
+            More product details
+          </Link>
         </p>
       </div>
     </div>
