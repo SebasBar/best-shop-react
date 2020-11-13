@@ -1,5 +1,6 @@
 import React from "react";
 
+//this component just recieves a call back function as props "onSearch" and reads the user input
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);

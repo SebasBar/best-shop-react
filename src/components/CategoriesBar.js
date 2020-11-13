@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const categories = [
   "technology",
@@ -30,14 +31,16 @@ class CreateCategoriesBar extends React.Component {
     return (
       <div className="categories-bar">
         {categories.map((category, index) => (
-          <button
-            key={index}
-            className="button"
-            value={category}
-            onClick={(event) => this.props.onSearch(event.target.value)}
-          >
-            {category}
-          </button>
+          <Link key={index} to={`/categories/${category}`}>
+            <button
+              key={index}
+              className="button"
+              value={category}
+              onClick={(event) => this.props.onSearch(event.target.value)}
+            >
+              {category}
+            </button>
+          </Link>
         ))}
       </div>
     );
