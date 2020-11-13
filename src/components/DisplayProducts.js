@@ -1,6 +1,5 @@
 import React from "react";
-//import { securityAppName } from "../config";
-import "./Card.css";
+
 import Card from "./Card";
 
 class DisplayProduct extends React.Component {
@@ -14,9 +13,7 @@ class DisplayProduct extends React.Component {
   render() {
     console.log("state", this.props.product);
     return (
-
       <>
-
         {this.props.product.map((product, index) => (
           <div className="display-products" key={index}>
             <Card
@@ -27,10 +24,9 @@ class DisplayProduct extends React.Component {
               shipping={product.shippingInfo[0].shippingType[0]}
               link={product.viewItemURL[0]}
               country={product.country}
-              id = {product.itemId}
+              id={product.itemId}
             />
           </div>
-
         ))}
       </>
     );
