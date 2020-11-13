@@ -32,7 +32,7 @@ class DisplayProduct extends React.Component {
           </div>
 
         ))}
-      </div>
+      </>
     );
   }
 }
