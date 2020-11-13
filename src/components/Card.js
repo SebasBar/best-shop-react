@@ -16,11 +16,10 @@ function Card(props) {
           {" "}
           <strong>Price:</strong> {props.price}${" "}
         </p>
-        
-       
+
         <p>
           <a href={props.link}>Link to ebay</a>
-          <br/>
+          <br />
           <Link
             to={{
               pathname: `/product/${props.id}`,
