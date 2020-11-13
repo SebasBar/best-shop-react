@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProductDetails.css";
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -8,11 +9,9 @@ class ProductDetails extends React.Component {
       liked: false,
     };
   }
-
   toggleLike = () => {
     this.setState({ liked: !this.state.liked });
   };
-
   render() {
     console.log(this.props);
     const details = this.props.location.details;

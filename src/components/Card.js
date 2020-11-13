@@ -20,6 +20,7 @@ function Card(props) {
         <p>
           <a href={props.link}>Link to ebay</a>
           <br />
+          <br />
           <Link
             to={{
               pathname: `/product/${props.id}`,
