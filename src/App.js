@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import ProductDetails from "./components/ProductDetails";
 
-
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
@@ -89,30 +88,30 @@ export default class App extends React.Component {
       <>
         <Header />
         <Router>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <Searchbar
-            onSearch={(query) => this.handleSearch(query)}
-            error={this.state.error}
-          />
-
-          <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
-
-          {!this.state.loading ? (
-            <DisplayProduct product={this.state.searchResult} />
-          ) : (
-            <h1>Loading...</h1>
-          )}
+          <Route exact path="/">
+            <label>Products per page </label>
+            <select
+              id="myList"
+              value={this.state.numItemDisplay}
+              onChange={this.handleNumProduct}
+            >
+              {itemPerPage.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+            <Searchbar
+              onSearch={(query) => this.handleSearch(query)}
+              error={this.state.error}
+            />
+            <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
+            {!this.state.loading ? (
+              <DisplayProduct product={this.state.searchResult} />
+            ) : (
+              <h1>Loading...</h1>
+            )}
+          </Route>
 
           <Route exact path="/category/:name" component={DisplayProduct} />
 
