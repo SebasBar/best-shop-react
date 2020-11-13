@@ -1,5 +1,5 @@
 import React from "react";
-import { securityAppName } from "../config";
+//import { securityAppName } from "../config";
 
 import Card from "./Card";
 
