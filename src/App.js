@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import ProductDetails from "./components/ProductDetails";
 
+
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 

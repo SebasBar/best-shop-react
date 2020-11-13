@@ -1,0 +1,11 @@
+.heart-button {
+    font-size: 35px;
+    color: gray;
+    border-radius: 100px;
+    width: 45px;
+}
+
+
+.liked {
+    color: red;
+}
