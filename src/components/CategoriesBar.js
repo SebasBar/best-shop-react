@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./CategoriesBar.css";
+
 const categories = [
   "technology",
   "fashion",
@@ -28,14 +31,17 @@ class CreateCategoriesBar extends React.Component {
   render() {
     return (
       <div className="categories-bar">
-        {categories.map((category) => (
-          <button
-            className="button"
-            value={category}
-            onClick={(event) => this.props.onSearch(event.target.value)}
-          >
-            {category}
-          </button>
+        {categories.map((category, index) => (
+          <Link key={index} to={`/categories/${category}`}>
+            <button
+              key={index}
+              className="button"
+              value={category}
+              onClick={(event) => this.props.onSearch(event.target.value)}
+            >
+              {category}
+            </button>
+          </Link>
         ))}
       </div>
     );

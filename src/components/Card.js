@@ -1,6 +1,12 @@
 import React from "react";
+
 import "./Card.css";
 
+
+
+import { Link } from "react-router-dom";
+
+//this component recieve as props the API array response
 
 
 function Card(props) {
@@ -16,25 +22,18 @@ function Card(props) {
           {" "}
           <strong>Price:</strong> {props.price}${" "}
         </p>
-      </div>
-      <div className="card-location">
-        <p>
-          <strong>Location available: </strong> {props.location}
-        </p>
-      </div>
-      <div className="card-country">
-        <p>
-          <strong>Country:</strong> {props.country}
-        </p>
-      </div>
-      <div className="card-shipping">
-        <p>
-          <strong>Shipping Type </strong> {props.shipping}
-        </p>
-      </div>
-      <div className="link">
         <p>
           <a href={props.link}>Link to ebay</a>
+          <br />
+          <br />
+          <Link
+            to={{
+              pathname: `/product/${props.id}`,
+              details: props,
+            }}
+          >
+            More product details
+          </Link>
         </p>
       </div>
     </div>

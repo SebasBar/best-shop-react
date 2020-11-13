@@ -1,10 +1,12 @@
 import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
-//import { securityAppName } from "./config";
+import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-//import "./App.css";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+import ProductDetails from "./components/ProductDetails";
+
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Card from "./components/Card.js";
@@ -14,7 +16,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 5,
+      numItemDisplay: 10,
       searchResult: null,
       error: false,
       loading: true,
@@ -23,7 +25,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     console.log("component mount");
-    this.handleFetch();
+    //this.handleFetch();
   }
 
   handleSearch = (query) => {
@@ -51,7 +53,7 @@ export default class App extends React.Component {
 
     // // use proxy url to overcome CORS problem)
     const proxyURL = "https://cors-anywhere.herokuapp.com/";
-    const completeURL = proxyURL + baseURL + "SECURITY-APPNAME=Sebastia-bestshop-PRD-1e6527e8b-30fb236c" + queryParams;
+    const completeURL = proxyURL + baseURL + securityAppName + queryParams;
     fetch(completeURL)
       .then((resp) => resp.json())
       .then((data) => {
@@ -81,44 +83,41 @@ export default class App extends React.Component {
     const maxItemsPerPage = 30;
     let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
     itemPerPage.shift();
+    // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
 
     console.log("app", this.state.searchResult);
     return (
       <>
         <Header />
-        {/* <h1>
-          B<strong>E</strong>ST-<strong>SHOP</strong>
-        </h1> */}
-
-        <p>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item) => (
-              <option value={item}>{item}</option>
-            ))}
-          </select>
-        </p>
-
         <Router>
-
-          <Searchbar
-            onSearch={(query) => this.handleSearch(query)}
-            error={this.state.error}
-          />
-          <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
-
-          <Route path="/category/:name" component={DisplayProduct} exact />
-          {!this.state.loading ? (
-            <DisplayProduct product={this.state.searchResult} />
-          ) : (
+          <Route exact path="/">
+            <label>Products per page </label>
+            <select
+              id="myList"
+              value={this.state.numItemDisplay}
+              onChange={this.handleNumProduct}
+            >
+              {itemPerPage.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+            <Searchbar
+              onSearch={(query) => this.handleSearch(query)}
+              error={this.state.error}
+            />
+            <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
+            {!this.state.loading ? (
+              <DisplayProduct product={this.state.searchResult} />
+            ) : (
               <h1>Loading...</h1>
             )}
-          <Link />
-          <Card />
+          </Route>
+
+          <Route exact path="/category/:name" component={DisplayProduct} />
+
+          <Route exact path="/product/:id" component={ProductDetails} />
         </Router>
         <Footer />
       </>
