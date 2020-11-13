@@ -4,16 +4,22 @@
     padding-top: 3em;
     position: relative;
     bottom: 0;
-    width: 100%;
     float: left; */
-    list-style-type: none;
+    display: flex;
+    width: 100%;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: rgb(18, 185, 240);
+    justify-content: space-around;
+
+}
+.main-footer li {
+    list-style-type: none;
 }
 
-.col{
-    float: left;
+
+.col {
+    text-align: left;
 }
 

@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 //import "./App.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Card from "./components/Card.js";
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -100,7 +102,9 @@ export default class App extends React.Component {
             ))}
           </select>
         </p>
+
         <Router>
+
           <Searchbar
             onSearch={(query) => this.handleSearch(query)}
             error={this.state.error}
@@ -113,6 +117,8 @@ export default class App extends React.Component {
           ) : (
               <h1>Loading...</h1>
             )}
+          <Link />
+          <Card />
         </Router>
         <Footer />
       </>

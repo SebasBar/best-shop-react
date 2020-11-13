@@ -1,6 +1,6 @@
 import React from "react";
 //import { securityAppName } from "../config";
-
+import "./Card.css";
 import Card from "./Card";
 
 class DisplayProduct extends React.Component {
@@ -14,8 +14,9 @@ class DisplayProduct extends React.Component {
   render() {
     console.log("state", this.props.product);
     return (
-      <>
+      <div className="results-section">
         {this.props.product.map((product) => (
+
           <Card
             price={product.sellingStatus[0].currentPrice[0].__value__}
             image={product.galleryURL[0]}
@@ -26,7 +27,7 @@ class DisplayProduct extends React.Component {
             country={product.country}
           />
         ))}
-      </>
+      </div>
     );
   }
 }
