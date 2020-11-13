@@ -1,5 +1,6 @@
 import React from "react";
 import "./ProductDetails.css";
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -8,16 +9,13 @@ class ProductDetails extends React.Component {
       liked: false,
     };
   }
-
   toggleLike = () => {
     this.setState({ liked: !this.state.liked });
   };
-
   render() {
     console.log(this.props);
     const details = this.props.location.details;
 
-  
     // const details = {
     //   price: "339.98",
     //   image: "https://thumbs3.ebaystatic.com/m/m8AowrG2FI3Xlwv9I-XvU1A/140.jpg",
@@ -48,7 +46,9 @@ class ProductDetails extends React.Component {
         <button
           onClick={this.toggleLike}
           className={`heart-button ${this.state.liked ? "liked" : ""}`}
-        >&#x2665;</button>
+        >
+          &#x2665;
+        </button>
       </>
     );
   }

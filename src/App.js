@@ -15,7 +15,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 5,
+      numItemDisplay: 10,
       searchResult: null,
       error: false,
       loading: true,
@@ -89,24 +89,22 @@ export default class App extends React.Component {
       <>
         <Header />
         <Router>
-          <Route exact path="/">
-            <label>Products per page </label>
-            <select
-              id="myList"
-              value={this.state.numItemDisplay}
-              onChange={this.handleNumProduct}
-            >
-              {itemPerPage.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-            <Searchbar
-              onSearch={(query) => this.handleSearch(query)}
-              error={this.state.error}
-            />
-          </Route>
+          <label>Products per page </label>
+          <select
+            id="myList"
+            value={this.state.numItemDisplay}
+            onChange={this.handleNumProduct}
+          >
+            {itemPerPage.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+          <Searchbar
+            onSearch={(query) => this.handleSearch(query)}
+            error={this.state.error}
+          />
 
           <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
 
