@@ -14,7 +14,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      numItemDisplay: 5,
+      numItemDisplay: 10,
       searchResult: null,
       error: false,
       loading: true,
@@ -105,9 +105,7 @@ export default class App extends React.Component {
               onSearch={(query) => this.handleSearch(query)}
               error={this.state.error}
             />
-
             <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
-
             {!this.state.loading ? (
               <DisplayProduct product={this.state.searchResult} />
             ) : (
