@@ -15,7 +15,7 @@ class DisplayProduct extends React.Component {
     console.log("state", this.props.product);
     return (
 
-      <>
+      <div className="results-section">
 
         {this.props.product.map((product, index) => (
           <div className="display-products" key={index}>
@@ -27,12 +27,12 @@ class DisplayProduct extends React.Component {
               shipping={product.shippingInfo[0].shippingType[0]}
               link={product.viewItemURL[0]}
               country={product.country}
-              id = {product.itemId}
+              id={product.itemId}
             />
           </div>
 
         ))}
-      </>
+      </div>
     );
   }
 }

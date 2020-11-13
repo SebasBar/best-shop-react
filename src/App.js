@@ -111,14 +111,16 @@ export default class App extends React.Component {
             {!this.state.loading ? (
               <DisplayProduct product={this.state.searchResult} />
             ) : (
-              <h1>Loading...</h1>
-            )}
+                <h1>Loading...</h1>
+              )}
           </Route>
 
           <Route exact path="/category/:name" component={DisplayProduct} />
 
           <Route exact path="/product/:id" component={ProductDetails} />
+          <Card />
         </Router>
+
         <Footer />
       </>
     );
