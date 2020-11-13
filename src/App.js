@@ -114,9 +114,9 @@ export default class App extends React.Component {
             )}
           </Route>
 
-          {/* <Route exact path="/category/:name" component={DisplayProduct} />
+          <Route exact path="/category/:name" component={DisplayProduct} />
 
-          <Route exact path="/product/:id" component={ProductDetails} /> */}
+          <Route exact path="/product/:id" component={ProductDetails} />
         </Router>
         <Footer />
       </>
