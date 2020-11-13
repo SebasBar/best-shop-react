@@ -1,0 +1,8 @@
+.details{
+    background-color: rgb(18, 185, 240);
+    margin-top: 10px;
+}
+
+.details p{
+    text-align: end;
+}

@@ -1,22 +1,27 @@
 import React from "react";
+
+import "./Card.css";
+
+
+
 import { Link } from "react-router-dom";
 
 //this component recieve as props the API array response
 
+
 function Card(props) {
   return (
-    <div className="main-container">
-      <div className="container">
-        <h2 className="product-name">
-          {" "}
-          <strong>{props.title}</strong>
-        </h2>
-        <img src={props.image} />
+    <div className="container">
+      <h2 className="product-name">
+        {" "}
+        <strong>{props.title}</strong>
+      </h2>
+      <img className="cards-image" src={props.image} />
+      <div className="card-prices">
         <p>
           {" "}
           <strong>Price:</strong> {props.price}${" "}
         </p>
-
         <p>
           <a href={props.link}>Link to ebay</a>
           <br />

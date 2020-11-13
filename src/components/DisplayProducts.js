@@ -1,6 +1,6 @@
 import React from "react";
-import { securityAppName } from "../config";
-
+//import { securityAppName } from "../config";
+import "./Card.css";
 import Card from "./Card";
 
 class DisplayProduct extends React.Component {
@@ -14,6 +14,7 @@ class DisplayProduct extends React.Component {
   render() {
     console.log("state", this.props.product);
     return (
+
       <>
 
         {this.props.product.map((product, index) => (
@@ -29,6 +30,7 @@ class DisplayProduct extends React.Component {
               id = {product.itemId}
             />
           </div>
+
         ))}
       </>
     );
