@@ -11,7 +11,6 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Card from "./components/Card.js";
 
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -115,9 +114,9 @@ export default class App extends React.Component {
             )}
           </Route>
 
-          <Route exact path="/category/:name" component={DisplayProduct} />
+          {/* <Route exact path="/category/:name" component={DisplayProduct} />
 
-          <Route exact path="/product/:id" component={ProductDetails} />
+          <Route exact path="/product/:id" component={ProductDetails} /> */}
         </Router>
         <Footer />
       </>
