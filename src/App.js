@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import ProductDetails from "./components/ProductDetails";
 
-
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
@@ -106,15 +105,15 @@ export default class App extends React.Component {
               onSearch={(query) => this.handleSearch(query)}
               error={this.state.error}
             />
+
+            <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
+
+            {!this.state.loading ? (
+              <DisplayProduct product={this.state.searchResult} />
+            ) : (
+              <h1>Loading...</h1>
+            )}
           </Route>
-
-          <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
-
-          {!this.state.loading ? (
-            <DisplayProduct product={this.state.searchResult} />
-          ) : (
-            <h1>Loading...</h1>
-          )}
 
           <Route exact path="/category/:name" component={DisplayProduct} />
 
