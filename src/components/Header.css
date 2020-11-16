@@ -1,8 +1,16 @@
-.details{
-    background-color: rgb(18, 185, 240);
-    margin-top: 10px;
+.header-name{
+  padding-left: 30px;
 }
 
-.details p{
-    text-align: end;
+.header-slogan {
+    padding-right: 30px;
+
+  
+}
+.header{
+    background-color: rgb(18, 185, 240);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 }

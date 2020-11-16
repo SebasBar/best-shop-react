@@ -4,11 +4,11 @@ import "./Header.css";
 
 function Header() {
     return (
-        <div className="details">
-            <h1>
+        <div className="header">
+            <h1 className="header-name">
                 B<strong>E</strong>ST-<strong>SHOP</strong>
             </h1>
-            <p>The best web search tool for e-commerce</p>
+            <p className="header-slogan">The best web search tool for e-commerce</p>
 
         </div>
 

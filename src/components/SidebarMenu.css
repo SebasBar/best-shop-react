@@ -1,0 +1,72 @@
+.sidebar-menu{
+    right: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 1;
+    background-color: lightblue;
+    position: fixed;
+    display: none;
+  }
+
+  .sidebar-menu .menu{
+    padding: 43px 20px;
+    margin-top: 25px;
+  }
+  .sidebar-menu .menu button{
+    background-color: white;
+    border: 0px;
+    padding: 10px 10px;
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .hide{
+      display: none;
+  }
+  .show{
+      display: block;
+  }
+
+ 
+.toggle-button {
+    background-color: white;
+    cursor: pointer;
+    display: inline-block;
+    height: fit-content;
+    padding: 6px;
+    visibility: hidden;
+    right: 7px;
+    z-index: 2;
+    top: 10px;
+    position: absolute;
+  }
+
+.toggle-button div {
+    width: 40px;
+    height: 5px;
+    margin: 6px 0px;
+    background-color: black;
+  }
+  .toggle-button-change .line1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+  }
+  
+  .toggle-button-change .line2 {
+    opacity: 0;
+  }
+  
+  .toggle-button-change .line3  {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+    transform: rotate(45deg) translate(-8px, -8px) ;
+  }
+
+  @media only screen and (max-width: 900px) {
+    .toggle-button {
+      visibility: visible;
+    }
+    .toggle-button div {
+      transition: 0.4s;
+    }
+  
+  }

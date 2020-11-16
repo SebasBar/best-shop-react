@@ -3,10 +3,9 @@ import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
 import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, } from "react-router-dom";
+import SidebarMenu from "./components/SidebarMenu.js"
 import ProductDetails from "./components/ProductDetails";
-
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Card from "./components/Card.js";
@@ -118,6 +117,7 @@ export default class App extends React.Component {
           <Route exact path="/category/:name" component={DisplayProduct} />
 
           <Route exact path="/product/:id" component={ProductDetails} />
+          <SidebarMenu onSearch={(query) => this.handleSearch(query)} />
           <Card />
         </Router>
 
