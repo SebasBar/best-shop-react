@@ -3,12 +3,11 @@ import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
 import { securityAppName } from "./config";
 import CategoriesBar from "./components/CategoriesBar";
-import { BrowserRouter as Router, Route, } from "react-router-dom";
-import SidebarMenu from "./components/SidebarMenu.js"
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import SidebarMenu from "./components/SidebarMenu.js";
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Card from "./components/Card"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,15 +17,24 @@ export default class App extends React.Component {
       searchResult: null,
       error: false,
       loading: true,
+      favourite: [],
     };
   }
+//create a function to add "fav" and existing "Fav" parameter in setState favourite , look down where we passed it to displayproducts.js
+  addFav = (fav) => {
+    this.setState({
+      favourite: [...this.state.favourite, fav],
+    });
+    console.log("fav", this.state.favourite)
+  };
 
   componentDidMount() {
-    console.log("component mount");
     //this.handleFetch();
   }
 
   handleSearch = (query) => {
+    // this.setState({favourite: [...this.state.favourite, "donkey"]})
+    // console.log("component mount", this.state);
     this.setState({ loading: true });
     this.handleFetch(query);
   };
@@ -107,15 +115,19 @@ export default class App extends React.Component {
             />
             <CategoriesBar onSearch={(query) => this.handleSearch(query)} />
             {!this.state.loading ? (
-              <DisplayProduct product={this.state.searchResult} />
+              //pass addFav and favroute function to displayproducts as props
+              <DisplayProduct
+                favourite= {this.state.favourite}
+                addFav={this.addFav}
+                product={this.state.searchResult}
+              />
             ) : (
-                <h1>Loading...</h1>
-              )}
+              <h1>Loading...</h1>
+            )}
           </Route>
           <Route exact path="/category/:name" component={DisplayProduct} />
           <Route exact path="/product/:id" component={ProductDetails} />
           <SidebarMenu onSearch={(query) => this.handleSearch(query)} />
-        
         </Router>
 
         <Footer />
