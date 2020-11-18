@@ -13,22 +13,25 @@ class DisplayProduct extends React.Component {
   render() {
     console.log("state", this.props.product);
     return (
-      <>
+
+
+      <div className="results-section">
+
         {this.props.product.map((product, index) => (
-          <div className="display-products" key={index}>
-            <Card
-              price={product.sellingStatus[0].currentPrice[0].__value__}
-              image={product.galleryURL[0]}
-              title={product.title}
-              location={product.location[0]}
-              shipping={product.shippingInfo[0].shippingType[0]}
-              link={product.viewItemURL[0]}
-              country={product.country}
-              id={product.itemId}
-            />
-          </div>
+          <Card
+            price={product.sellingStatus[0].currentPrice[0].__value__}
+            image={product.galleryURL[0]}
+            title={product.title}
+            location={product.location[0]}
+            shipping={product.shippingInfo[0].shippingType[0]}
+            link={product.viewItemURL[0]}
+            country={product.country}
+            id={product.itemId}
+          />
+
+
         ))}
-      </>
+      </div>
     );
   }
 }

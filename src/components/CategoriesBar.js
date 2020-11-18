@@ -30,19 +30,24 @@ class CreateCategoriesBar extends React.Component {
 
   render() {
     return (
-      <div className="categories-bar">
-        {categories.map((category, index) => (
-          <Link key={index} to={`/categories/${category}`}>
-            <button
-              key={index}
-              className="button"
-              value={category}
-              onClick={(event) => this.props.onSearch(event.target.value)}
-            >
-              {category}
-            </button>
-          </Link>
-        ))}
+      <div>
+
+        <div className="categories-bar">
+          {categories.map((category, index) => (
+            <div className="button-container">
+              <Link key={index} to={`/categories/${category}`}>
+                <button
+                  key={index}
+                  className="button"
+                  value={category}
+                  onClick={(event) => this.props.onSearch(event.target.value)}
+                >
+                  {category}
+                </button>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
