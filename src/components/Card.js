@@ -2,21 +2,13 @@ import React from "react";
 
 import "./Card.css";
 
-
-
 import { Link } from "react-router-dom";
 
 //this component recieve as props the API array response
 
 function Card(props) {
-
-  console.log("received remote control: ", props.setState)
+  console.log("this is fav", props);
   //adding fav button
-  function addFav(){
-    console.log("hello", props)
-  }
-  
-
   return (
     <div className="container">
       <h2 className="product-name">
@@ -31,7 +23,7 @@ function Card(props) {
           <a href={props.link}>Link to ebay</a>
           <br />
           <br />
-          
+
           <Link
             to={{
               pathname: `/product/${props.id}`,
@@ -40,8 +32,16 @@ function Card(props) {
           >
             More product details
           </Link>
-          </p>
-          <button onClick={addFav}>Add to Favourites</button>
+        </p>
+        {/* finally we re using this function. we brought all the way from app.js */}
+        <button
+          className={`heart-button ${
+            props.favourite.includes(props.id) ? "liked" : ""
+          }`}
+          onClick={() => props.addFav(props.id)}
+        >
+          &#x2665;
+        </button>
       </div>
     </div>
   );

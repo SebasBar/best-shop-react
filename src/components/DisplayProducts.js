@@ -24,7 +24,9 @@ class DisplayProduct extends React.Component {
             title={product.title}
             link={product.viewItemURL[0]}
             id={product.itemId}
-
+            //here we pass addFav to Card. This was one was recieved as props
+            addFav={this.props.addFav}
+            favourite= {this.props.favourite}
           />
 
 
