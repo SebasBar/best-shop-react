@@ -37,22 +37,7 @@ class ProductDetails extends React.Component {
   };
 
   render() {
-    // console.log("this is my props", this.props);
-    // const details = this.props.location.details;
 
-    // const details = {
-    //   price: "339.98",
-    //   image: "https://thumbs3.ebaystatic.com/m/m8AowrG2FI3Xlwv9I-XvU1A/140.jpg",
-    //   title: [
-    //     "5 HP Air Compressor Duty Electric Motor 184T Frame 1750 RPM Single Phase WEG New",
-    //   ],
-    //   location: "Lincoln,NE,USA",
-    //   shipping: "Free",
-    //   link:
-    //     "https://www.ebay.com/itm/5-HP-Air-Compressor-Duty-Electric-Motor-184T-Frame-1750-RPM-Single-Phase-WEG-New-/273295622070",
-    //   country: ["US"],
-    //   id: ["273295622070"],
-    // };
 
     console.log("this is item", this.state.item ? this.state.item.Item.Title : "not yet here")
     if (this.state.item){

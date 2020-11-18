@@ -8,8 +8,15 @@ import { Link } from "react-router-dom";
 
 //this component recieve as props the API array response
 
-
 function Card(props) {
+
+  console.log("received remote control: ", props.setState)
+  //adding fav button
+  function addFav(){
+    console.log("hello", props)
+  }
+  
+
   return (
     <div className="container">
       <h2 className="product-name">
@@ -24,6 +31,7 @@ function Card(props) {
           <a href={props.link}>Link to ebay</a>
           <br />
           <br />
+          
           <Link
             to={{
               pathname: `/product/${props.id}`,
@@ -32,7 +40,8 @@ function Card(props) {
           >
             More product details
           </Link>
-        </p>
+          </p>
+          <button onClick={addFav}>Add to Favourites</button>
       </div>
     </div>
   );

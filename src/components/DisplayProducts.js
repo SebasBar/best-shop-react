@@ -24,6 +24,7 @@ class DisplayProduct extends React.Component {
             title={product.title}
             link={product.viewItemURL[0]}
             id={product.itemId}
+
           />
 
 

@@ -8,7 +8,6 @@ import SidebarMenu from "./components/SidebarMenu.js"
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Card from "./components/Card"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -18,15 +17,18 @@ export default class App extends React.Component {
       searchResult: null,
       error: false,
       loading: true,
+      favourite: []
     };
   }
 
   componentDidMount() {
-    console.log("component mount");
+
     //this.handleFetch();
   }
 
   handleSearch = (query) => {
+    // this.setState({favourite: [...this.state.favourite, "donkey"]})
+    // console.log("component mount", this.state);
     this.setState({ loading: true });
     this.handleFetch(query);
   };
@@ -89,6 +91,7 @@ export default class App extends React.Component {
         <Header />
         <Router>
           <Route exact path="/">
+            {this.state.favourite}
             <label>Products per page </label>
             <select
               id="myList"
