@@ -13,13 +13,11 @@ function Card(props) {
   return (
     <div className="container">
       <h2 className="product-name">
-        {" "}
         <strong>{props.title}</strong>
       </h2>
       <img className="cards-image" src={props.image} />
       <div className="card-prices">
         <p>
-          {" "}
           <strong>Price:</strong> {props.price}${" "}
         </p>
         <p>

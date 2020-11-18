@@ -110,12 +110,13 @@ export default class App extends React.Component {
               <DisplayProduct product={this.state.searchResult} />
             ) : (
                 <h1>Loading...</h1>
+                
               )}
           </Route>
           <Route exact path="/category/:name" component={DisplayProduct} />
           <Route exact path="/product/:id" component={ProductDetails} />
           <SidebarMenu onSearch={(query) => this.handleSearch(query)} />
-        
+          
         </Router>
 
         <Footer />
