@@ -21,6 +21,10 @@ export default class App extends React.Component {
     };
   }
 
+  handleNumProduct = (event) => {
+    this.setState({ numItemDisplay: event.target.value });
+  };
+
   render() {
     const maxItemsPerPage = 30;
     let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
