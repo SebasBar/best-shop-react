@@ -1,5 +1,5 @@
 import React from "react";
-
+import { withRouter } from "react-router-dom";
 //this component just recieves a call back function as props "onSearch" and reads the user input
 class SearchBar extends React.Component {
   constructor(props) {
@@ -10,13 +10,14 @@ class SearchBar extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSearch(this.state.userInput);
+    // this.props.onSearch(this.state.userInput);
+    this.props.history.push(`/products?name=${this.state.userInput}`);
   };
   handleChange = (event) => {
     this.setState({ userInput: event.target.value });
   };
   render() {
-    console.log("Bar", this.props.error);
+    console.log("Bar", this.props);
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
         <input
@@ -32,4 +33,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);
