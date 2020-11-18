@@ -9,11 +9,13 @@ class ProductDetails extends React.Component {
       liked: false,
     };
   }
+
   toggleLike = () => {
     this.setState({ liked: !this.state.liked });
   };
+
   render() {
-    console.log(this.props);
+    console.log("this is my props", this.props);
     const details = this.props.location.details;
 
     // const details = {
