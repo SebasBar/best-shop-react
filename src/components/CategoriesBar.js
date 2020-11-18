@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./CategoriesBar.css";
 
 const categories = [
@@ -20,9 +20,10 @@ class CreateCategoriesBar extends React.Component {
       categoryInput: "",
     };
   }
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.props.onSearch(this.state.categoryInput);
+  handleSubmit = (value) => {
+    this.props.history.push(`/${value}`);
+
+    // this.props.onSearch(this.state.categoryInput);
   };
   handleChange = (event) => {
     this.setState({ categoryInput: event });
@@ -31,7 +32,6 @@ class CreateCategoriesBar extends React.Component {
   render() {
     return (
       <div>
-
         <div className="categories-bar">
           {categories.map((category, index) => (
             <div className="button-container">
@@ -40,7 +40,7 @@ class CreateCategoriesBar extends React.Component {
                   key={index}
                   className="button"
                   value={category}
-                  onClick={(event) => this.props.onSearch(event.target.value)}
+                  onClick={(event) => this.handleSubmit(event.target.value)}
                 >
                   {category}
                 </button>
@@ -53,4 +53,4 @@ class CreateCategoriesBar extends React.Component {
   }
 }
 
-export default CreateCategoriesBar;
+export default withRouter(CreateCategoriesBar);
