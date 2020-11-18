@@ -13,9 +13,8 @@ class DisplayProduct extends React.Component {
   render() {
     console.log("state", this.props.product);
     return (
-
-
       <div className="results-section">
+
 
         {this.props.product.map((product, index) => (
           <Card
@@ -31,6 +30,7 @@ class DisplayProduct extends React.Component {
 
 
         ))}
+
       </div>
     );
   }
