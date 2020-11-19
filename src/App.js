@@ -2,10 +2,11 @@ import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
 import CategoriesBar from "./components/CategoriesBar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Favourite from "./components/Favourite";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -35,7 +36,6 @@ export default class App extends React.Component {
     itemPerPage.shift();
     // // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
 
-    console.log("app", this.state.searchResult);
     return (
       <>
         <Header />
@@ -54,39 +54,49 @@ export default class App extends React.Component {
           </select>
           <Searchbar
             history
-            // onSearch={(query) => this.handleSearch(query)}
             error={this.state.error}
           />
           <CategoriesBar />
-          {/* {!this.state.loading ? <DisplayProduct /> : <h1>Loading...</h1>} */}
-          <Route>
-            <Route
-              exact
-              path="/categories/:name"
-              render={(props) => ( // reacts internal props: match, search etc...
-                <DisplayProduct
-                  {...props}
-                  addFav={this.addFav}
-                  favourite={this.state.favourite}
-                />
-              )}
-            ></Route>
 
-            <Route
-              exact
-              path="/products"
-              render={(props) => (
-                <DisplayProduct
-                  {...props}
-                  addFav={this.addFav}
-                  favourite={this.state.favourite}
-                />
-              )}
-            />
+          <Switch>
+          <Route
+            exact
+            path="/categories/favourites"
+            render={(props) => (
+              <Favourite {...props} favourite={this.state.favourite} />
+            )}
+          />
 
-            <Route exact path="/product/:id" component={ProductDetails} />
-            {/* <SidebarMenu onSearch={(query) => this.handleSearch(query)} /> */}
-          </Route>
+          <Route
+            exact
+            path="/categories/:name"
+            render={(
+              props // reacts internal props: match, search etc...
+            ) => (
+              <DisplayProduct
+                {...props}
+                addFav={this.addFav}
+                favourite={this.state.favourite}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/products"
+            render={(props) => (
+              <DisplayProduct
+                {...props}
+                addFav={this.addFav}
+                favourite={this.state.favourite}
+              />
+            )}
+          />
+
+          <Route exact path="/product/:id" component={ProductDetails} />
+          </Switch>
+          
+       
         </Router>
 
         <Footer />

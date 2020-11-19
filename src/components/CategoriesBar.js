@@ -11,6 +11,7 @@ const categories = [
   "industrial",
   "sports",
   "home&garden",
+  "favourites",
 ];
 
 class CreateCategoriesBar extends React.Component {

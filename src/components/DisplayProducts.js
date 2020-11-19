@@ -15,6 +15,8 @@ class DisplayProduct extends React.Component {
   }
 
   componentDidMount() {
+
+    console.log("Display product RENDERS")
     this.handleFetch();
   }
   componentDidUpdate(prevProps) {
