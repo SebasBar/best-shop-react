@@ -20,10 +20,17 @@ export default class App extends React.Component {
   }
   //create a function to add "fav" and existing "Fav" parameter in setState favourite , look down where we passed it to displayproducts.js
   addFav = (fav) => {
-    this.setState({
-      favourite: [...this.state.favourite, fav],
-    });
-    console.log("fav", this.state.favourite);
+    if (this.state.favourite.includes(fav)) {
+      this.state.favourite.splice(this.state.favourite.indexOf(fav), 1);
+
+      this.setState({
+        favourite: this.state.favourite,
+      });
+    } else {
+      this.setState({
+        favourite: [...this.state.favourite, fav],
+      });
+    }
   };
 
   handleNumProduct = (event) => {
@@ -52,51 +59,50 @@ export default class App extends React.Component {
               </option>
             ))}
           </select>
-          <Searchbar
-            history
-            error={this.state.error}
-          />
+          <Searchbar history error={this.state.error} />
           <CategoriesBar />
 
           <Switch>
-          <Route
-            exact
-            path="/categories/favourites"
-            render={(props) => (
-              <Favourite {...props} favourite={this.state.favourite} />
-            )}
-          />
+            <Route
+              exact
+              path="/categories/favourites"
+              render={(props) => (
+                <Favourite
+                  {...props}
+                  favourite={this.state.favourite}
+                  addFav={this.addFav}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/categories/:name"
-            render={(
-              props // reacts internal props: match, search etc...
-            ) => (
-              <DisplayProduct
-                {...props}
-                addFav={this.addFav}
-                favourite={this.state.favourite}
-              />
-            )}
-          />
+            <Route
+              exact
+              path="/categories/:name"
+              render={(
+                props // reacts internal props: match, search etc...
+              ) => (
+                <DisplayProduct
+                  {...props}
+                  addFav={this.addFav}
+                  favourite={this.state.favourite}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/products"
-            render={(props) => (
-              <DisplayProduct
-                {...props}
-                addFav={this.addFav}
-                favourite={this.state.favourite}
-              />
-            )}
-          />
+            <Route
+              exact
+              path="/products"
+              render={(props) => (
+                <DisplayProduct
+                  {...props}
+                  addFav={this.addFav}
+                  favourite={this.state.favourite}
+                />
+              )}
+            />
 
-          <Route exact path="/product/:id" component={ProductDetails} />
+            <Route exact path="/product/:id" component={ProductDetails} />
           </Switch>
-          
-       
         </Router>
 
         <Footer />

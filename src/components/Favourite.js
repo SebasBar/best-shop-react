@@ -1,21 +1,20 @@
 import React from "react";
+import Card from "./Card";
+import "./ProductDetails.css";
 
 export default class Favourite extends React.Component {
   constructor(props) {
     super(props);
-    console.log("this is favvvv ", props.favourite);
     this.state = {
       data: null,
     };
   }
 
-
   componentDidMount() {
-    console.log("this is props id", this.props.favourite);
     const proxyURL = "https://cors-anywhere.herokuapp.com/";
-  
+
     let favArray = this.props.favourite.join();
-    console.log("favarray", favArray);
+
     const url =
       "https://open.api.ebay.com/shopping?" +
       "callname=GetMultipleItems&" +
@@ -34,28 +33,33 @@ export default class Favourite extends React.Component {
   }
 
   render() {
-    console.log("Favourite RENDERS");
-
-    
-
-    return (
-      <div className="products">
-       
-        {/* {this.state.data ? console.log(this.state.data) : "not yet"}
-        {this.state.data && this.state.data.id ? <p>this.state.data.Title</p> */}
-   
-
-
-
-
-
-</div>
-   
-    );
+    if (this.state.data) {
+      const { Ack, Item } = this.state.data;
+      console.log("ack", Ack);
+      if (Ack === "Success") {
+        return (
+          <div className="products">
+            {Item.map((product) => (
+              <Card
+                price={product.ConvertedCurrentPrice.Value}
+                image={product.PictureURL[0]}
+                title={product.Title}
+                location={product.Location}
+                shipping={product.ConditionDescription}
+                link={product.ViewItemURLForNaturalSearch}
+                country={product.Country}
+                id={product.ItemID}
+                addFav={this.props.addFav}
+                favourite={this.props.favourite}
+              />
+            ))}
+          </div>
+        );
+      }
+    }
+    return "no favorites selected";
   }
 }
-
-
 
 // AutoPay: false
 // BidCount: 0

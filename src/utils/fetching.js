@@ -20,12 +20,8 @@ function fetching(query, numItem) {
   return fetch(completeURL)
     .then((resp) => resp.json())
     .then((data) => {
-      console.log("data", data);
+   
       if (data.findItemsByKeywordsResponse[0].ack[0] === "Failure") {
-        console.log(
-          data.findItemsByKeywordsResponse[0].errorMessage[0].error[0]
-            .message[0]
-        );
         throw new Error(
           data.findItemsByKeywordsResponse[0].errorMessage[0].error[0].message[0]
         );

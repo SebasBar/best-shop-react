@@ -35,9 +35,9 @@ function Card(props) {
         {/* finally we re using this function. we brought all the way from app.js */}
         <button
           className={`heart-button ${
-            props.favourite.includes(props.id[0]) ? "liked" : ""
+            props.favourite.includes(props.id) ? "liked" : ""
           }`}
-          onClick={() => props.addFav(props.id[0])}
+          onClick={() => props.addFav(props.id)}
         >
           &#x2665;
         </button>
