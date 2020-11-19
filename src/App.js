@@ -2,10 +2,11 @@ import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
 import CategoriesBar from "./components/CategoriesBar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Favourite from "./components/Favourite";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,10 +20,17 @@ export default class App extends React.Component {
   }
   //create a function to add "fav" and existing "Fav" parameter in setState favourite , look down where we passed it to displayproducts.js
   addFav = (fav) => {
-    this.setState({
-      favourite: [...this.state.favourite, fav],
-    });
-    console.log("fav", this.state.favourite);
+    if (this.state.favourite.includes(fav)) {
+      this.state.favourite.splice(this.state.favourite.indexOf(fav), 1);
+
+      this.setState({
+        favourite: this.state.favourite,
+      });
+    } else {
+      this.setState({
+        favourite: [...this.state.favourite, fav],
+      });
+    }
   };
 
   handleNumProduct = (event) => {
@@ -35,7 +43,6 @@ export default class App extends React.Component {
     itemPerPage.shift();
     // // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
 
-    console.log("app", this.state.searchResult);
     return (
       <>
         <Header />
@@ -52,25 +59,35 @@ export default class App extends React.Component {
               </option>
             ))}
           </select>
-          <Searchbar
-            history
-            // onSearch={(query) => this.handleSearch(query)}
-            error={this.state.error}
-          />
+          <Searchbar history error={this.state.error} />
           <CategoriesBar />
-          {/* {!this.state.loading ? <DisplayProduct /> : <h1>Loading...</h1>} */}
-          <Route>
+
+          <Switch>
+            <Route
+              exact
+              path="/categories/favourites"
+              render={(props) => (
+                <Favourite
+                  {...props}
+                  favourite={this.state.favourite}
+                  addFav={this.addFav}
+                />
+              )}
+            />
+
             <Route
               exact
               path="/categories/:name"
-              render={(props) => ( // reacts internal props: match, search etc...
+              render={(
+                props // reacts internal props: match, search etc...
+              ) => (
                 <DisplayProduct
                   {...props}
                   addFav={this.addFav}
                   favourite={this.state.favourite}
                 />
               )}
-            ></Route>
+            />
 
             <Route
               exact
@@ -85,8 +102,7 @@ export default class App extends React.Component {
             />
 
             <Route exact path="/product/:id" component={ProductDetails} />
-            {/* <SidebarMenu onSearch={(query) => this.handleSearch(query)} /> */}
-          </Route>
+          </Switch>
         </Router>
 
         <Footer />

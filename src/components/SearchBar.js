@@ -17,7 +17,7 @@ class SearchBar extends React.Component {
     this.setState({ userInput: event.target.value });
   };
   render() {
-    console.log("Bar", this.props);
+ 
     return (
       <form onSubmit={(event) => this.handleSubmit(event)}>
         <input

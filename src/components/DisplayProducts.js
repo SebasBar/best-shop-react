@@ -29,7 +29,7 @@ class DisplayProduct extends React.Component {
 
   handleFetch() {
     const search = queryString.parse(this.props.location.search);
-    console.log(search);
+
     console.log("this is props id", this.props);
     console.log(this.props.match?.params.name);
     const query = this.props.match?.params.name || search.name || "";
@@ -49,19 +49,18 @@ class DisplayProduct extends React.Component {
   }
 
   render() {
-    // console.log("displayProduct", this.props);
-    console.log("displayProduct favorites", this.props.favourite);
+    console.log(this.props.favourite);
 
     return this.state.searchResults.map((product, index) => (
       <Card
         price={product.sellingStatus[0].currentPrice[0].__value__}
         image={product.galleryURL[0]}
-        title={product.title}
+        title={product.title[0]}
         location={product.location[0]}
         shipping={product.shippingInfo[0].shippingType[0]}
         link={product.viewItemURL[0]}
-        country={product.country}
-        id={product.itemId}
+        country={product.country[0]}
+        id={product.itemId[0]}
         addFav={this.props.addFav}
         favourite={this.props.favourite}
       />
