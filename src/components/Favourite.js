@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import "./ProductDetails.css";
+import { securityAppName2 } from "../config";
 
 export default class Favourite extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ export default class Favourite extends React.Component {
       "https://open.api.ebay.com/shopping?" +
       "callname=GetMultipleItems&" +
       "responseencoding=JSON&" +
-      "appid=Sebastia-bestshop-PRD-1e6527e8b-30fb236c&" +
+      `appid=${securityAppName2}` +
       "siteid=0&" +
       "version=967&" +
       `ItemID=${favArray}`;
