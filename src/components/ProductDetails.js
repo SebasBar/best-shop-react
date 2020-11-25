@@ -4,10 +4,29 @@ import "./ProductDetails.css";
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    console.log("THIS IS PARAMS: ", props.match.params);
+    // console.log("THIS IS PARAMS: ", props.match.params.id);
     this.state = {
       liked: false,
+      item: null,
     };
+  }
+
+  componentDidMount() {
+    const proxyURL = "https://cors-anywhere.herokuapp.com/";
+    const url =
+      "https://open.api.ebay.com/shopping?" +
+      "callname=GetSingleItem&" +
+      "responseencoding=JSON&" +
+      "appid=Sebastia-bestshop-PRD-1e6527e8b-30fb236c&" +
+      "siteid=0&" +
+      "version=967&" +
+      `ItemID=${this.props.match.params.id}`;
+
+    fetch(proxyURL + url)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ item: data });
+      });
   }
 
   toggleLike = () => {
@@ -15,44 +34,42 @@ class ProductDetails extends React.Component {
   };
 
   render() {
-    console.log("this is my props", this.props);
-    const details = this.props.location.details;
-
-    // const details = {
-    //   price: "339.98",
-    //   image: "https://thumbs3.ebaystatic.com/m/m8AowrG2FI3Xlwv9I-XvU1A/140.jpg",
-    //   title: [
-    //     "5 HP Air Compressor Duty Electric Motor 184T Frame 1750 RPM Single Phase WEG New",
-    //   ],
-    //   location: "Lincoln,NE,USA",
-    //   shipping: "Free",
-    //   link:
-    //     "https://www.ebay.com/itm/5-HP-Air-Compressor-Duty-Electric-Motor-184T-Frame-1750-RPM-Single-Phase-WEG-New-/273295622070",
-    //   country: ["US"],
-    //   id: ["273295622070"],
-    // };
-
-    return (
-      <>
-        <h3>{details.title}</h3>
-        <img className="productPic" src={details.image} />
-
-        <p>Our Price: {details.price}$</p>
-        <strong>Shipping cost: {details.shipping}</strong>
-        <p>Country: {details.country}</p>
-        <p>Location: {details.location}</p>
-        <a href={details.link}>Buy now</a>
-        <br></br>
-        <br></br>
-
-        <button
-          onClick={this.toggleLike}
-          className={`heart-button ${this.state.liked ? "liked" : ""}`}
-        >
-          &#x2665;
-        </button>
-      </>
+    console.log(
+      "this is item",
+      this.state.item ? this.state.item.Item.Title : "not yet here"
     );
+    if (this.state.item) {
+      const details = this.state.item.Item;
+
+      return (
+        <>
+          <h3>{details.Title}</h3>
+          <img
+            className="productPic"
+            src={details.PictureURL}
+            alt=""
+            width="200px"
+          />
+
+          <p>Our Price: {details.ConvertedCurrentPrice.Value}$</p>
+          <strong>Conditions: {details.ConditionDescription}</strong>
+          <p>Country: {details.Country}</p>
+          <p>Location: {details.Location}</p>
+          <a href={details.ViewItemURLForNaturalSearch}>Buy now</a>
+          <br></br>
+          <br></br>
+
+          <button
+            onClick={this.toggleLike}
+            className={`heart-button ${this.state.liked ? "liked" : ""}`}
+          >
+            &#x2665;
+          </button>
+        </>
+      );
+    }
+
+    return <>not loaded yet</>;
   }
 }
 
