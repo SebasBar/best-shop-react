@@ -34,12 +34,16 @@ class DisplayProduct extends React.Component {
     console.log(this.props.match?.params.name);
     const query = this.props.match?.params.name || search.name || "";
     fetching(query, this.state.numItemDisplay)
-      .then((data) =>
+      .then((data) => {
+          console.log("search result", data)
+
         this.setState({
           loading: false,
           searchResults:
             data.findItemsByKeywordsResponse[0].searchResult[0].item,
         })
+      }
+        
       )
       .catch((err) => {
         this.setState({
@@ -49,12 +53,13 @@ class DisplayProduct extends React.Component {
   }
 
   render() {
-    console.log(this.props.favourite);
+    console.log(this.state.searchResults);
 
-    return this.state.searchResults.map((product, index) => (
+
+    return this.state.searchResults? this.state.searchResults.map((product, index) => (
       <Card
         price={product.sellingStatus[0].currentPrice[0].__value__}
-        image={product.galleryURL[0]}
+        image={product.galleryURL}
         title={product.title[0]}
         location={product.location[0]}
         shipping={product.shippingInfo[0].shippingType[0]}
@@ -64,7 +69,7 @@ class DisplayProduct extends React.Component {
         addFav={this.props.addFav}
         favourite={this.props.favourite}
       />
-    ));
+    )): <h4>No Search results, try different keyword!</h4>;
   }
 }
 
