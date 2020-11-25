@@ -7,6 +7,7 @@ import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Favourite from "./components/Favourite";
+import HomePage from "./components/HomePage";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class App extends React.Component {
   handleNumProduct = (event) => {
     this.setState({ numItemDisplay: event.target.value });
   };
+  // this handles when there is a change in the product number drop down menu
 
   render() {
     const maxItemsPerPage = 30;
@@ -65,10 +67,22 @@ export default class App extends React.Component {
           <Switch>
             <Route
               exact
+              path="/"
+              render={(props) => (
+                <HomePage
+                  {...props}
+                  favourite={this.state.favourite}
+                  addFav={this.addFav}
+                />
+              )}
+            />
+            <Route
+              exact
               path="/categories/favourites"
               render={(props) => (
                 <Favourite
                   {...props}
+                  numberItem={this.state.numItemDisplay}
                   favourite={this.state.favourite}
                   addFav={this.addFav}
                 />
@@ -83,6 +97,7 @@ export default class App extends React.Component {
               ) => (
                 <DisplayProduct
                   {...props}
+                  numberItem={this.state.numItemDisplay}
                   addFav={this.addFav}
                   favourite={this.state.favourite}
                 />
@@ -95,6 +110,7 @@ export default class App extends React.Component {
               render={(props) => (
                 <DisplayProduct
                   {...props}
+                  numberItem={this.state.numItemDisplay}
                   addFav={this.addFav}
                   favourite={this.state.favourite}
                 />
