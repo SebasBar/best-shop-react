@@ -8,6 +8,7 @@ import SidebarMenu from "./components/SidebarMenu.js"
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Card from "./components/Card";
 
 export default class App extends React.Component {
   constructor(props) {
