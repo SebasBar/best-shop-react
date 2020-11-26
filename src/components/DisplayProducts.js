@@ -10,7 +10,6 @@ class DisplayProduct extends React.Component {
       loading: true,
       searchResults: [],
       error: false,
-      numItemDisplay: 30,
     };
   }
 
@@ -33,9 +32,9 @@ class DisplayProduct extends React.Component {
     const search = queryString.parse(this.props.location.search);
 
     console.log("this is props id", this.props);
-    console.log(this.props.match?.params.name);
+    console.log("This props match param name", this.props.match?.params.name);
     const query = this.props.match?.params.name || search.name || "";
-    fetching(query, this.props.numItemDisplay)
+    fetching(query, this.props.numberItem)
       .then((data) =>
         this.setState({
           loading: false,
@@ -51,13 +50,13 @@ class DisplayProduct extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log("this state", this.state.searchResults);
 
     return this.state.loading ? (
       <h1>Loading...</h1>
     ) : (
       this.state.searchResults
-        .slice(this.props.numberItem)
+        // .slice(this.props.numberItem)
         .map((product, index) => (
           <Card
             price={product.sellingStatus[0].currentPrice[0].__value__}

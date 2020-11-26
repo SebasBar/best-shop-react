@@ -15,6 +15,7 @@ export default class Favourite extends React.Component {
     const proxyURL = "https://cors-anywhere.herokuapp.com/";
 
     let favArray = this.props.favourite.join();
+    console.log("fav", favArray);
 
     const url =
       "https://open.api.ebay.com/shopping?" +
