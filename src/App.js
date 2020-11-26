@@ -46,30 +46,33 @@ export default class App extends React.Component {
 					<Searchbar history error={this.state.error} />
 					<CategoriesBar numberItem={this.state.numItemDisplay} />
 
-					<Switch>
-						<Route
-							exact
-							path='/'
-							render={(props) => (
-								<HomePage
-									{...props}
-									favourite={this.state.favourite}
-									addFav={this.addFav}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path='/categories/favourites'
-							render={(props) => (
-								<Favourite
-									{...props}
-									numberItem={this.state.numItemDisplay}
-									favourite={this.state.favourite}
-									addFav={this.addFav}
-								/>
-							)}
-						/>
+
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <HomePage
+                  {...props}
+                  numberItem={this.state.numItemDisplay}
+                  favourite={this.state.favourite}
+                  addFav={this.addFav}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/categories/favourites"
+              render={(props) => (
+                <Favourite
+                  {...props}
+                  numberItem={this.state.numItemDisplay}
+                  favourite={this.state.favourite}
+                  addFav={this.addFav}
+                />
+              )}
+            />
+
 
 						<Route
 							exact

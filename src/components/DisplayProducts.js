@@ -5,16 +5,16 @@ import fetching from '../utils/fetching.js';
 import { Link } from 'react-router-dom';
 
 class DisplayProduct extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			loading: true,
-			searchResults: [],
-			error: false,
-			numItemDisplay: 30,
-			page: 1,
-		};
-	}
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      searchResults: [],
+      error: false,
+    };
+  }
+
 
 	componentDidMount() {
 		this.handleFetch();
@@ -57,46 +57,49 @@ class DisplayProduct extends React.Component {
 			});
 	}
 
-	displayPagination(totalpages) {
-		const actualPage = Number(this.props.match.params.page);
-		let output = [<Link to={`./${actualPage - 1}`}>Previous</Link>];
-		// 0 - 10 -- 10 - 20
-		console.log(totalpages);
-		for (let i = actualPage; i < actualPage + 10; i++) {
-			output.push(<Link to={`./${i}`}>page {i} </Link>);
-		}
-		output.push(<Link to={`./${actualPage + 11}`}>Next</Link>);
-		return output;
-	}
+    console.log("this is props id", this.props);
+    console.log("This props match param name", this.props.match?.params.name);
+    const query = this.props.match?.params.name || search.name || "";
+    fetching(query, this.props.numberItem)
+      .then((data) =>
+        this.setState({
+          loading: false,
+          searchResults:
+            data.findItemsByKeywordsResponse[0].searchResult[0].item,
+        })
+      )
+      .catch((err) => {
+        this.setState({
+          error: err,
+        });
+      });
+  }
 
-	render() {
-		console.log(this.state);
+  render() {
+    console.log("this state", this.state.searchResults);
 
-		return this.state.loading ? (
-			<h1>Loading...</h1>
-		) : (
-			<>
-				{this.state.searchResults
-					// slice will reduce the array from 0 to x (x = props.numberItem)
-					.slice(0, this.props.numberItem)
-					.map((product, index) => (
-						<Card
-							price={product.sellingStatus[0].currentPrice[0].__value__}
-							image={product.galleryURL[0]}
-							title={product.title[0]}
-							location={product.location[0]}
-							shipping={product.shippingInfo[0].shippingType[0]}
-							link={product.viewItemURL[0]}
-							country={product.country[0]}
-							id={product.itemId[0]}
-							addFav={this.props.addFav}
-							favourite={this.props.favourite}
-						/>
-					))}
-				{this.displayPagination(this.state.paginationOutput)}
-			</>
-		);
-	}
+    return this.state.loading ? (
+      <h1>Loading...</h1>
+    ) : (
+      this.state.searchResults
+        // .slice(this.props.numberItem)
+        .map((product, index) => (
+          <Card
+            price={product.sellingStatus[0].currentPrice[0].__value__}
+            image={product.galleryURL[0]}
+            title={product.title[0]}
+            location={product.location[0]}
+            shipping={product.shippingInfo[0].shippingType[0]}
+            link={product.viewItemURL[0]}
+            country={product.country[0]}
+            id={product.itemId[0]}
+            addFav={this.props.addFav}
+            favourite={this.props.favourite}
+          />
+        ))
+    );
+  }
+
 }
 
 export default DisplayProduct;
