@@ -33,7 +33,7 @@ class DisplayProduct extends React.Component {
 	handleFetch() {
 		this.setState({ loading: true });
 		const search = queryString.parse(this.props.location.search);
-		console.log('number', search);
+		console.log('items', search);
 		console.log('this is props id', this.props);
 		// console.log(this.props.match?.params.name);
 		const query = this.props.match?.params.name || search.name || '';
