@@ -1,18 +1,19 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import "./CategoriesBar.css";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import './CategoriesBar.css';
 
 const categories = [
-  "technology",
-  "fashion",
-  "beauty",
-  "motors",
-  "collectibles",
-  "industrial",
-  "sports",
-  "home&garden",
-  "favourites",
+	'technology',
+	'fashion',
+	'beauty',
+	'motors',
+	'collectibles',
+	'industrial',
+	'sports',
+	'home&garden',
+	'favourites',
 ];
+
 
 class CategoriesBar extends React.Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class CategoriesBar extends React.Component {
       </div>
     );
   }
+
 }
 
 export default withRouter(CategoriesBar);

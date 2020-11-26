@@ -1,9 +1,11 @@
-import React from "react";
-import Card from "./Card";
-import queryString from "query-string";
-import fetching from "../utils/fetching.js";
+import React from 'react';
+import Card from './Card';
+import queryString from 'query-string';
+import fetching from '../utils/fetching.js';
+import { Link } from 'react-router-dom';
 
 class DisplayProduct extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -13,23 +15,47 @@ class DisplayProduct extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.handleFetch();
-  }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.location?.search !== prevProps.location?.search ||
-      this.props.match?.params.name !== prevProps.match?.params.name
-      // || this.props.numberItem !== prevProps.numberItem
-    ) {
-      this.handleFetch();
-    }
-  }
+	componentDidMount() {
+		this.handleFetch();
+	}
 
-  handleFetch() {
-    this.setState({ loading: true });
-    const search = queryString.parse(this.props.location.search);
+	componentDidUpdate(prevProps) {
+		if (
+			this.props.location?.search !== prevProps.location?.search ||
+			this.props.match?.params.name !== prevProps.match?.params.name ||
+			this.props.match?.params.page !== prevProps.match?.params.page
+		) {
+			this.handleFetch();
+		}
+	}
+
+	handleFetch() {
+		this.setState({ loading: true });
+		const search = queryString.parse(this.props.location.search);
+		console.log('items', search);
+		console.log('this is props id', this.props);
+		// console.log(this.props.match?.params.name);
+		const query = this.props.match?.params.name || search.name || '';
+		fetching(query, search.number || 30, this.props.match.params.page)
+			.then((data) => {
+				console.log('data', data);
+				this.setState({
+					loading: false,
+					searchResults:
+						data.findItemsByKeywordsResponse[0].searchResult[0].item,
+					paginationOutput: Number(
+						data.findItemsByKeywordsResponse[0].paginationOutput[0]
+							.totalPages[0]
+					),
+				});
+			})
+			.catch((err) => {
+				this.setState({
+					error: err,
+				});
+			});
+	}
 
     console.log("this is props id", this.props);
     console.log("This props match param name", this.props.match?.params.name);
@@ -73,6 +99,7 @@ class DisplayProduct extends React.Component {
         ))
     );
   }
+
 }
 
 export default DisplayProduct;
