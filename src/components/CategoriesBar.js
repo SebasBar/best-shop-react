@@ -14,7 +14,7 @@ const categories = [
   "favourites",
 ];
 
-class CreateCategoriesBar extends React.Component {
+class CategoriesBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,4 +54,4 @@ class CreateCategoriesBar extends React.Component {
   }
 }
 
-export default withRouter(CreateCategoriesBar);
+export default withRouter(CategoriesBar);

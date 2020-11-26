@@ -11,7 +11,6 @@ class HomePage extends React.Component {
       loading: true,
       searchResults: [],
       error: false,
-      numItemDisplay: 10,
     };
   }
 
@@ -19,25 +18,9 @@ class HomePage extends React.Component {
     this.handleFetch();
   }
 
-  //   componentDidUpdate(prevProps) {
-  //     if (
-  //       this.props.location?.search !== prevProps.location?.search ||
-  //       this.props.match?.params.name !== prevProps.match?.params.name ||
-  //       this.props.numberItem !== prevProps.numberItem
-  //     ) {
-  //       this.handleFetch();
-  //     }
-  //   }
-
   handleFetch() {
-    // const search = queryString.parse(this.props.location.search);
-
-    // // this.setState("numItemDisplay:", this.props.numberItem);
-    // console.log("this is props id", this.props);
-    // console.log(this.props.match?.params.name);
-    // const query = this.props.match?.params.name || search.name || "";
     const query = this.getWord();
-    fetching(query, this.state.numItemDisplay)
+    fetching(query, this.props.numberItem)
       .then((data) =>
         this.setState({
           loading: false,
@@ -54,11 +37,15 @@ class HomePage extends React.Component {
 
   getWord() {
     let index = Math.floor(Math.random() * Math.floor(Words.length));
+    console.log("Word: ", Words[index]);
     return Words[index];
   }
 
   render() {
-    console.log(this.props.favourite);
+    console.log("Favorite", this.props.favourite);
+    console.log("Results: ", this.state.searchResults);
+    console.log("Num Items: ", this.props.numberItem);
+
     return this.state.loading ? (
       <h1>Loading...</h1>
     ) : (

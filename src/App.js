@@ -71,6 +71,7 @@ export default class App extends React.Component {
               render={(props) => (
                 <HomePage
                   {...props}
+                  numberItem={this.state.numItemDisplay}
                   favourite={this.state.favourite}
                   addFav={this.addFav}
                 />
