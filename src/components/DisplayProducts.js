@@ -36,13 +36,14 @@ class DisplayProduct extends React.Component {
     console.log("This props match param name", this.props.match?.params.name);
     const query = this.props.match?.params.name || search.name || "";
     fetching(query, this.props.numberItem)
-      .then((data) =>
+      .then((data) => {
         this.setState({
           loading: false,
           searchResults:
             data.findItemsByKeywordsResponse[0].searchResult[0].item,
-        })
-      )
+        });
+        console.log("Search results", this.state.searchResults);
+      })
       .catch((err) => {
         this.setState({
           error: err,
@@ -55,6 +56,8 @@ class DisplayProduct extends React.Component {
 
     return this.state.loading ? (
       <h1>Loading...</h1>
+    ) : this.state.searchResults === undefined ? (
+      <h1>Please enter a valid keyword</h1>
     ) : (
       <div className="cards">
         {this.state.searchResults
