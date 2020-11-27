@@ -40,6 +40,7 @@ class ProductDetails extends React.Component {
     );
     if (this.state.item) {
       const details = this.state.item.Item;
+      console.log("item", this.state.item);
 
       return (
         <>
@@ -52,7 +53,10 @@ class ProductDetails extends React.Component {
           />
 
           <p>Our Price: {details.ConvertedCurrentPrice.Value}$</p>
-          <strong>Conditions: {details.ConditionDescription}</strong>
+          <p>
+            Condition: <strong>{details.ConditionDisplayName}</strong>
+          </p>
+          <p>Quantity: {details.QuantityThreshold}</p>
           <p>Country: {details.Country}</p>
           <p>Location: {details.Location}</p>
           <a href={details.ViewItemURLForNaturalSearch}>Buy now</a>
