@@ -30,26 +30,34 @@ class CreateCategoriesBar extends React.Component {
     this.setState({ categoryInput: event });
   };
 
+  toogleFunction = () => {
+    this.setState({
+      close: !this.state.close,
+    });
+  }
+
   render() {
+    const { close } = this.state
     return (
-      <div>
-        <div className="categories-bar">
-          {categories.map((category, index) => (
-            <div className="button-container">
-              <Link key={index} to={`/categories/${category}`}>
-                <button
-                  key={index}
-                  className="button"
-                  value={category}
-                  onClick={(event) => this.handleSubmit(event.target.value)}
-                >
-                  {category}
-                </button>
-              </Link>
-            </div>
-          ))}
+      <>
+        <div className={`toggle-button ${close ? "" : "open"} `} onClick={() => this.toogleFunction()} >
+          <div className={`line ${!close ? "close" : ""}`}></div>
+          <div className={`line ${!close ? "close" : ""}`}></div>
+          <div className={`line ${!close ? "close" : ""}`}></div>
         </div>
-      </div>
+        <div className={`menu ${close ? "" : "open"}`}>
+
+          <div className="categories-bar">
+            {categories.map((category, index) => (
+              <Link className="button" key={index} to={`/categories/${category}`}>
+                {category}
+              </Link>
+            ))}
+
+          </div>
+        </div>
+      </>
+
     );
   }
 }

@@ -1,28 +1,103 @@
+@keyframes slidein {
+  from {transform: translateX(1000px);}
+  to {transform: translateX(0px);}
+}
+
 .categories-bar {
-  /* overflow: hidden; */
-  background-color: #333;
   font-family: Arial, Helvetica, sans-serif;
-display: flex;
-justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .categories-bar button {
-  /* float: left; */
   font-size: 16px;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  width: 100%;
+  /* width:200px; */
+  width:100%;
 }
 
-.button-container {
+.button{
   flex: 1;
+  border: 0px;
+  padding: 10px 10px;
+  margin-top: 5px;
+  border: 0px;
+    text-decoration: none;
+    color: black;
+    background-color: lightgray;
+    padding: 10px 10px;
+    text-align: center;
+    margin-top: 5px;
 }
+.button:hover{
+color:black;
+background-color:white;
+}
+
+
+.toggle-button {
+  display:none;
+  background-color: white;
+  cursor: pointer;
+  height: 50px;
+  width:50px;
+  padding: 5px;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  right: 7px;
+  z-index: 2;
+  top: 10px;
+  position: absolute;
+}
+.line{
+    transition:all 0.5s;
+  background-color:black;
+  height:5px;
+  width:80%;
+}
+.toggle-button.open > *:nth-child(1) {
+    -webkit-transform: rotate(-45deg) translate(10px, 10px);
+    transform: rotate(45deg) translate(10px, 10px);
+}
+.toggle-button.open > *:nth-child(2) {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.toggle-button.open > *:nth-child(3) {
+opacity:0;
+}
+
 
 @media only screen and (max-width: 900px) {
+  .menu{
+    display:none;  }
+  .button{
+    width:100%;
+  }
   .categories-bar {
-    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    visibility: visible;
+  }
 
 
+    .toggle-button{
+      display:flex;
+    }  .menu.open{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+
+    animation: slidein 0.5s ease-out;
   }
 }
+
+@@

@@ -6,11 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-<<<<<<< HEAD
-import Card from "./components/Card";
-=======
 import Favourite from "./components/Favourite";
->>>>>>> 024d0062fa706fb7f63f90a8da65f1421090c25d
+//import SidebarMenu from "./components/SidebarMenu"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -65,6 +62,7 @@ export default class App extends React.Component {
           </select>
           <Searchbar history error={this.state.error} />
           <CategoriesBar />
+          {/* <SidebarMenu /> */}
 
           <Switch>
             <Route
@@ -85,12 +83,12 @@ export default class App extends React.Component {
               render={(
                 props // reacts internal props: match, search etc...
               ) => (
-                <DisplayProduct
-                  {...props}
-                  addFav={this.addFav}
-                  favourite={this.state.favourite}
-                />
-              )}
+                  <DisplayProduct
+                    {...props}
+                    addFav={this.addFav}
+                    favourite={this.state.favourite}
+                  />
+                )}
             />
 
             <Route

@@ -2,6 +2,8 @@ import React from "react";
 import Card from "./Card";
 import queryString from "query-string";
 import fetching from "../utils/fetching.js";
+import "./DisplayProducts.css";
+
 
 class DisplayProduct extends React.Component {
   constructor(props) {
@@ -35,7 +37,7 @@ class DisplayProduct extends React.Component {
     const query = this.props.match?.params.name || search.name || "";
     fetching(query, this.state.numItemDisplay)
       .then((data) => {
-          console.log("search result", data)
+        console.log("search result", data)
 
         this.setState({
           loading: false,
@@ -43,7 +45,7 @@ class DisplayProduct extends React.Component {
             data.findItemsByKeywordsResponse[0].searchResult[0].item,
         })
       }
-        
+
       )
       .catch((err) => {
         this.setState({
@@ -56,8 +58,8 @@ class DisplayProduct extends React.Component {
     console.log(this.state.searchResults);
 
 
-    return this.state.searchResults? this.state.searchResults.map((product, index) => (
-      <Card
+    return this.state.searchResults ? this.state.searchResults.map((product, index) => (
+      <Card className="card"
         price={product.sellingStatus[0].currentPrice[0].__value__}
         image={product.galleryURL}
         title={product.title[0]}
@@ -69,7 +71,7 @@ class DisplayProduct extends React.Component {
         addFav={this.props.addFav}
         favourite={this.props.favourite}
       />
-    )): <h4>No Search results, try different keyword!</h4>;
+    )) : <h4>No Search results, try different keyword!</h4>;
   }
 }
 
