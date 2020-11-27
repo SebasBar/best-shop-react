@@ -40,10 +40,12 @@ export default class App extends React.Component {
   // this handles when there is a change in the product number drop down menu
 
   render() {
-    const maxItemsPerPage = 30;
-    let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
-    itemPerPage.shift();
+    // const maxItemsPerPage = 30;
+    // let itemPerPage = Array.from(Array(maxItemsPerPage + 1).keys());
+    // itemPerPage.shift();
     // // this will create an array from 1 to the maxItemsPerPage value to be displayed on the drop down menu
+
+    let itemPerPage = [1, 5, 10, 20, 30, 50];
 
     return (
       <>

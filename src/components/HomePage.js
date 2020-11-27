@@ -48,7 +48,16 @@ class HomePage extends React.Component {
     console.log("Num Items: ", this.props.numberItem);
 
     return this.state.loading ? (
-      <h1>Loading...</h1>
+      // <h1>Loading...</h1>
+      <img
+        src="https://lh6.googleusercontent.com/proxy/8K8idd8KbjWRXVj0o04RiRSDdlx7MvCzWGO_o7GgRcTKvTvaIgxkYmtay2GqQyph4iIbqDjzTGLEUhLYpBiRmlfhfBgs-AOAfZmcCpUrxVX5KQ1J=s0-d"
+        style={{
+          width: "250px",
+          heigh: "180px",
+          margin: "auto",
+          display: "block",
+        }}
+      />
     ) : (
       <div className="cards">
         {this.state.searchResults.map((product, index) => (
