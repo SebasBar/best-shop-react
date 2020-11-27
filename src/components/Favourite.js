@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import "./ProductDetails.css";
+import "./DisplayProducts.css";
 import { securityAppName2 } from "../config";
 
 export default class Favourite extends React.Component {
@@ -40,7 +40,7 @@ export default class Favourite extends React.Component {
       console.log("ack", Ack);
       if (Ack === "Success") {
         return (
-          <div className="products">
+          <div className="cards">
             {Item.map((product) => (
               <Card
                 price={product.ConvertedCurrentPrice.Value}
