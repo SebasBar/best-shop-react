@@ -13,7 +13,11 @@ function Card(props) {
       <h2 className="product-name">
         <strong>{props.title}</strong>
       </h2>
-      <img className="cards-image" src={props.image} />
+      <img
+        style={{ width: "250px", heigh: "180px" }}
+        className="cards-image"
+        src={props.image}
+      />
       <div className="card-prices">
         <p>
           <strong>Price:</strong> {props.price}${" "}

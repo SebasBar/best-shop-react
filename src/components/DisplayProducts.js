@@ -56,8 +56,7 @@ class DisplayProduct extends React.Component {
 
     return this.state.loading ? (
       <h1>Loading...</h1>
-    ) : this.state.searchResults === undefined ||
-      this.props.match?.params.name === undefined ? (
+    ) : this.state.searchResults === undefined ? (
       <h1>Please enter a valid keyword</h1>
     ) : (
       <div className="cards">
