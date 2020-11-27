@@ -1,5 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import "./SearchBar.css";
+
 //this component just recieves a call back function as props "onSearch" and reads the user input
 class SearchBar extends React.Component {
   constructor(props) {
@@ -17,18 +19,21 @@ class SearchBar extends React.Component {
     this.setState({ userInput: event.target.value });
   };
   render() {
- 
+
     return (
-      <form onSubmit={(event) => this.handleSubmit(event)}>
-        <input
-          type="text"
-          placeholder="Search here"
-          value={this.state.userInput}
-          onChange={(event) => this.handleChange(event)}
-        />
-        <input type="submit" value="search" />
-        {this.props.error && <p style={{ color: "red" }}>{this.props.error}</p>}
-      </form>
+      <div className="form-inline">
+        <form onSubmit={(event) => this.handleSubmit(event)}>
+          <input
+            type="text"
+            placeholder="Search here"
+            value={this.state.userInput}
+            onChange={(event) => this.handleChange(event)}
+          />
+          <input type="submit" className="send" value="search" />
+          {this.props.error && <p style={{ color: "red" }}>{this.props.error}</p>}
+        </form>
+
+      </div>
     );
   }
 }
