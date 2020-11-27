@@ -66,7 +66,7 @@ class DisplayProduct extends React.Component {
         }}
       />
     ) : this.state.searchResults === undefined ? (
-      <h1>Please enter a valid keyword</h1>
+      <h1 style={{ color: "red" }}>Please enter a valid keyword</h1>
     ) : (
       <div className="cards">
         {this.state.searchResults
