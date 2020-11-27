@@ -83,7 +83,6 @@ export default class App extends React.Component {
               render={(props) => (
                 <Favourite
                   {...props}
-                  numberItem={this.state.numItemDisplay}
                   favourite={this.state.favourite}
                   addFav={this.addFav}
                 />
