@@ -1,3 +1,4 @@
+import "./App.css";
 import React from "react";
 import DisplayProduct from "./components/DisplayProducts";
 import Searchbar from "./components/SearchBar";
@@ -51,19 +52,25 @@ export default class App extends React.Component {
       <>
         <Header />
         <Router>
-          <label>Products per page </label>
-          <select
-            id="myList"
-            value={this.state.numItemDisplay}
-            onChange={this.handleNumProduct}
-          >
-            {itemPerPage.map((item, index) => (
-              <option key={index} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <Searchbar history error={this.state.error} />
+          <div className="products-search">
+            <div className="space-v"> </div>
+            <Searchbar history error={this.state.error} />
+            <div className="space-h"> </div>
+            <label className="label1">Products per page </label>
+            <div className="space-h"> </div>
+            <select
+              id="myList"
+              className="pro-per-page"
+              value={this.state.numItemDisplay}
+              onChange={this.handleNumProduct}
+            >
+              {itemPerPage.map((item, index) => (
+                <option key={index} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </div>
           <CategoriesBar />
 
           <Switch>

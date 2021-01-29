@@ -19,20 +19,21 @@ class SearchBar extends React.Component {
     this.setState({ userInput: event.target.value });
   };
   render() {
-
     return (
       <div className="form-inline">
         <form onSubmit={(event) => this.handleSubmit(event)}>
           <input
+            className="search-input"
             type="text"
             placeholder="Search here"
             value={this.state.userInput}
             onChange={(event) => this.handleChange(event)}
           />
           <input type="submit" className="send" value="search" />
-          {this.props.error && <p style={{ color: "red" }}>{this.props.error}</p>}
+          {this.props.error && (
+            <p style={{ color: "red" }}>{this.props.error}</p>
+          )}
         </form>
-
       </div>
     );
   }

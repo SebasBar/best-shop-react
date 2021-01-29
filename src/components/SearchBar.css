@@ -1,9 +1,20 @@
-.form-inline  input {
-    font-size: x-large; 
-  
+.form-inline input {
+  font-size: x-large;
+  color: darkslategray;
+  font-family: "Stencil Std", fantasy;
+}
+
+.search-input {
+  width: 700px;
+  align-items: center;
+  justify-content: center;
+  border-style: 2px solid darkslategray;
+}
+
+.input::placeholder {
+  border: 2px solid darkslategray;
 }
 
 .send {
-    background-color:#2bb0b2;
-
+  background-color: lightblue;
 }
